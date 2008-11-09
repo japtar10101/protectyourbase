@@ -3,8 +3,8 @@
 Ball::Ball() {
 	x = 0;
 	y = 0;
-	x_move = 0.0000000001;
-	y_move = 0.0000000001;
+	x_move = 0.000001;
+	y_move = 0.000001;
 }
 
 Ball::Ball( int x1, int y1 ) {
