@@ -1,4 +1,4 @@
-#include "ball.h"
+#include "ball.hpp"
 
 static const int window_position_x = 400;
 static const int window_position_y = 200;
