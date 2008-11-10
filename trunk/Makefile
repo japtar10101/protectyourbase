@@ -1,8 +1,8 @@
-LDLIBS = -lglut -lGL -lGLU -lXmu -lX11 -lm -L/usr/X11R6/lib -g -o
+LDLIBS = -lglut -lGL -lGLU -lXmu -lX11 -lm -L/usr/X11R6/lib -g
 GDB = -g -c
 
 game: main.o
-	g++ $(LDLIBS) main.o ball.o graphic.o game
+	g++ $(LDLIBS) main.o ball.o graphic.o -o game
 
 main.o: main.cpp ball.o
 	g++ $(GDB) main.cpp
