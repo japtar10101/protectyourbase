@@ -11,10 +11,10 @@ in this game
 #include <math.h>
 
 #define DEGR_TO_RADIANS ( 3.14159 / 180 );
-#define DUMP( variable ) cout << "File " << __FILE__ << ", line "\
-	<< __LINE__ << ":\n" << #variable " = " << variable << endl
-#define DEBUG( string ) cout << "File " << __FILE__ << ", line "\
-	<< __LINE__ << ":\n" << string << endl
+#define DUMP( variable ) std::cout << "File " << __FILE__ << ", line "\
+	<< __LINE__ << ":\n" << #variable " = " << variable << std::endl
+#define DEBUG( string ) std::cout << "File " << __FILE__ << ", line "\
+	<< __LINE__ << ":\n" << string << std::endl
 #define DEBUG_VAR( string, variable ) printf( "File %s, line %d:\n"\
 	#string "\n", __FILE__, __LINE__, var )
 
