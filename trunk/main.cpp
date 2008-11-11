@@ -1,9 +1,12 @@
 #include "ball.hpp"
 
+/**** initialize variables ****/
 static const int window_position_x = 400;
 static const int window_position_y = 200;
 static const int window_size_width = 700;
 static const int window_size_height = 700;
+static const int width = 1;
+static const int height = 1;
 static const char *window_title = "The Game!!!";
 Ball ball;
 
@@ -13,6 +16,21 @@ void display() {
 	ball.draw();
 	glutPostRedisplay();
 	glFlush(); 
+}
+
+//set the animations
+void animation( int value ) {
+	if( ball.get_x() > width || ball.get_x() < width * (-1) ) {
+		ball.bounce_horizontally();
+		ball.increase_velocity();
+	}
+	if( ball.get_y() > height || ball.get_y() < height * (-1) ) {
+		ball.bounce_vertically();
+		ball.increase_velocity();
+	}
+	ball.animate();
+	display();
+	glutTimerFunc( 1, animation, 0 );
 }
 
 int main( int argc, char** argv ) {
@@ -25,6 +43,7 @@ int main( int argc, char** argv ) {
 		window_size_height );
 	glutCreateWindow( window_title );
 	glutDisplayFunc( display );
+	glutTimerFunc( 1, animation, 0 );
 	glutMainLoop();
 	return 0;
 }
