@@ -16,7 +16,7 @@ in this game
 #define DEBUG( string ) std::cout << "File " << __FILE__ << ", line "\
 	<< __LINE__ << ":\n" << string << std::endl
 #define DEBUG_VAR( string, variable ) printf( "File %s, line %d:\n"\
-	#string "\n", __FILE__, __LINE__, var )
+	#string "\n", __FILE__, __LINE__, variable )
 
 class Graphic {
 protected:
