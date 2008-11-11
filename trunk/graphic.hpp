@@ -53,6 +53,12 @@ public:
 	virtual void animate();
 	virtual void force_draw() = 0;
 	virtual void force_animate() = 0;
+	
+	//boundary functions
+	virtual float top();
+	virtual float left();
+	virtual float bottom() = 0;
+	virtual float right() = 0;
 };
 
 #endif
