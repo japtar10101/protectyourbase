@@ -10,6 +10,7 @@ private:
 	static const float default_radius = 0.05;
 	static const float default_velocity = 0.002;
 	static const float increment_velocity = 1.05;
+	static const float maximum_velocity = 0.04;
 
 protected:
 	float radius;
@@ -28,10 +29,6 @@ public:
 	float get_x_vel();
 	float get_y_vel();
 	
-	//functions to override
-	void force_draw();
-	void force_animate();
-	
 	//functions for the ball to bounce
 	void bounce_vertically();
 	void bounce_horizontally();
@@ -39,6 +36,18 @@ public:
 	
 	//increase velocity
 	void increase_velocity();
+	
+	//functions to override
+	void force_draw();
+	void force_animate();
+	float left();
+	float right();
+	float top();
+	float bottom();
+	
+private:
+	//helper functions
+	float velocity();
 };
 
 #endif

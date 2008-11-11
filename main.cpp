@@ -20,11 +20,11 @@ void display() {
 
 //set the animations
 void animation( int value ) {
-	if( ball.get_x() > width || ball.get_x() < width * (-1) ) {
+	if( ball.right() > width || ball.left() < width * (-1) ) {
 		ball.bounce_horizontally();
 		ball.increase_velocity();
 	}
-	if( ball.get_y() > height || ball.get_y() < height * (-1) ) {
+	if( ball.top() > height || ball.bottom() < height * (-1) ) {
 		ball.bounce_vertically();
 		ball.increase_velocity();
 	}

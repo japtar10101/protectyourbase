@@ -76,7 +76,7 @@ void Graphic::stop_animation() {
 	animated = false;
 }
 
-/**** and the rest of the virtual functions ****/
+/**** draw and animate ****/
 
 void Graphic::draw() {
 	if( visible )
@@ -86,5 +86,15 @@ void Graphic::draw() {
 void Graphic::animate() {
 	if( animated )
 		force_animate();
+}
+
+/**** boundary functions ****/
+
+float Graphic::top() {
+	return y;
+}
+
+float Graphic::left() {
+	return x;
 }
 
