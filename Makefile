@@ -7,6 +7,9 @@ game: main.o
 main.o: main.cpp ball.o
 	g++ $(GDB) main.cpp
 
+#block.o: block.cpp block.hpp graphic.o
+#	g++ $(GDB) block.cpp
+
 ball.o: ball.cpp ball.hpp graphic.o
 	g++ $(GDB) ball.cpp
 
