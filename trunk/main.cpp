@@ -1,10 +1,10 @@
 #include "ball.hpp"
 
 /**** initialize variables ****/
-static const int width = 1, height = 1,
+static const int window_size_width = 700, window_size_height = 700,
 	window_position_x = 400, window_position_y = 200;
 static const char *window_title = "The Game!!!";
-GLsizei window_size_width = 700, window_size_height = 700;
+GLsizei width = 20, height = 20;
 Ball ball;
 
 //make the display function
@@ -47,20 +47,21 @@ void resize_window( GLsizei w, GLsizei h ) {
 	display();
 	glFlush();
 	//set global size for use by drawing routine
-	window_size_width = w;
-	window_size_height = h;
+	width = w;
+	height = h;
 }
 
 void initialize_window() {
 	/* Pick 2D clipping window to match size of X window. This choice
 	avoids having to scale object coordinates each time window is
 	resized. */
-	glViewport( 0, 0, window_size_width, window_size_height );
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
-	glOrtho( 0.0, (GLdouble) window_size_width , 0.0,
-		(GLdouble) window_size_height, -1.0, 1.0 );
+	glOrtho( 0.0, (GLdouble) width , 0.0, (GLdouble) height, -1.0, 1.0 );
+	glMatrixMode( GL_MODELVIEW );
+	glLoadIdentity();
 	/* set clear color to black and clear window */
+	glViewport( 0, 0, width, height );
 	glClearColor( 0.0, 0.0, 0.0, 1.0 );
 	glClear( GL_COLOR_BUFFER_BIT );
 	glFlush();
