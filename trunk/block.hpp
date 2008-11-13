@@ -2,6 +2,7 @@
 #define BLOCK_H
 
 #include "graphic.hpp"
+#include "ball.hpp"
 
 class Block : public Graphic {
 private:
@@ -14,7 +15,7 @@ public:
 	//constructor
 	Block();
 	Block( float x_coord, float y_coord );
-	Ball( float x_coord, float y_coord, float set_width, float set_height );
+	Block( float x_coord, float y_coord, float set_width, float set_height );
 	
 	//getters and setters
 	void set_width( float set_width );
@@ -24,11 +25,12 @@ public:
 	
 	//functions to override
 	void force_draw();
-	void force_animate();
-	float left();
+	virtual void force_animate();
 	float right();
 	float top();
-	float bottom();
+	
+	//collision detection
+	virtual bool ball_collision( Ball &ball );
 };
 
 #endif

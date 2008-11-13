@@ -123,16 +123,16 @@ float Ball::get_y_vel() {
 /**** Bounce functions ****/
 
 void Ball::bounce_vertically() {
-	y_vel *= (-1.0);
+	y_vel *= -1.0;
 }
 
 void Ball::bounce_horizontally() {
-	x_vel *= (-1.0);
+	x_vel *= -1.0;
 }
 
 void Ball::bounce_diagonally() {
-	x_vel *= (-1.0);
-	y_vel *= (-1.0);
+	x_vel *= -1.0;
+	y_vel *= -1.0;
 }
 
 /**** Increase velocity function ****/

@@ -1,4 +1,5 @@
 #include "ball.hpp"
+#include "block.hpp"
 
 /**** initialize variables ****/
 static const int window_size_width = 700, window_size_height = 700,
@@ -7,11 +8,13 @@ static const int window_size_width = 700, window_size_height = 700,
 static const char *window_title = "The Game!!!";
 static const GLdouble width = 20, height = 20;
 Ball ball;
+Block testing;
 
 //make the display function
 void display() {
 	glClear( GL_COLOR_BUFFER_BIT );
 	ball.draw();
+	testing.draw();
 	glutSwapBuffers();
 	glutPostRedisplay();
 }
@@ -28,6 +31,7 @@ void animation( int value ) {
 		ball.bounce_vertically();
 		increase_velocity = true;
 	}
+	testing.ball_collision( ball );
 	//should we increment the speed?
 	if( increase_velocity ) ball.increase_velocity();
 	//animate and redisplay.
@@ -59,6 +63,7 @@ void initialize_window() {
 
 int main( int argc, char** argv ) {
 	ball = Ball();
+	testing = Block( 5.0, 5.0, 2.0, 10.0 );
 	//basic setup
 	glutInit( &argc, argv );
 	glutInitDisplayMode( GLUT_DOUBLE | GLUT_RGB );
