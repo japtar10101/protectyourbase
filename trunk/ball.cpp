@@ -3,7 +3,7 @@
 /**** Constructor ****/
 
 Ball::Ball() :
-Graphic( 0.0, 0.0, true, true ), radius( default_radius ) {
+Graphic( 10.0, 10.0, true, true ), radius( default_radius ) {
 	//seed the random variable to time
 	srand( time( NULL ) );
 	
@@ -28,7 +28,7 @@ Graphic( 0.0, 0.0, true, true ), radius( default_radius ) {
 }
 
 Ball::Ball( float radius_val ) :
-Graphic( 0.0, 0.0, true, true ), radius( radius ) {
+Graphic( 10.0, 10.0, true, true ), radius( radius ) {
 	//seed the random variable to time
 	srand( time( NULL ) );
 	
