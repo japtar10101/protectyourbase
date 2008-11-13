@@ -9,12 +9,16 @@ static const char *window_title = "The Game!!!";
 static const GLdouble width = 20, height = 20;
 Ball ball;
 Block testing;
+Block testing2;
+Block testing3;
 
 //make the display function
 void display() {
 	glClear( GL_COLOR_BUFFER_BIT );
 	ball.draw();
 	testing.draw();
+	testing2.draw();
+	testing3.draw();
 	glutSwapBuffers();
 	glutPostRedisplay();
 }
@@ -32,6 +36,8 @@ void animation( int value ) {
 		increase_velocity = true;
 	}
 	testing.ball_collision( ball );
+	testing2.ball_collision( ball );
+	testing3.ball_collision( ball );
 	//should we increment the speed?
 	if( increase_velocity ) ball.increase_velocity();
 	//animate and redisplay.
@@ -62,8 +68,12 @@ void initialize_window() {
 }
 
 int main( int argc, char** argv ) {
+	//setup the random variable for Ball constructor
+	srand( time( NULL ) );
 	ball = Ball();
-	testing = Block( 5.0, 5.0, 2.0, 10.0 );
+	testing = Block( 5.0, 5.0, 2.0, 2.0 );
+	testing2 = Block( 15.0, 5.0, 2.0, 2.0 );
+	testing3 = Block( 5.0, 15.0, 2.0, 2.0 );
 	//basic setup
 	glutInit( &argc, argv );
 	glutInitDisplayMode( GLUT_DOUBLE | GLUT_RGB );

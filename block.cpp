@@ -74,17 +74,18 @@ bool Block::ball_collision( Ball &ball ) {
 			hit_right = ball_x > block_right,
 			hit_left = ball_x < block_left;
 		//Condition for hitting the corners
-		if( ( hit_top && hit_right && x_velocity < 0 && y_velocity < 0 ) ||
-			( hit_bottom && hit_right && x_velocity < 0 && y_velocity > 0 ) ||
-			( hit_top && hit_left && x_velocity > 0 && y_velocity < 0 ) ||
-			( hit_bottom && hit_left && x_velocity > 0 && y_velocity > 0 ) )
+		if( ( hit_top && hit_right && x_velocity < 0.0 && y_velocity < 0.0 ) ||
+			( hit_bottom && hit_right && x_velocity < 0.0 && y_velocity > 0.0 ) ||
+			( hit_top && hit_left && x_velocity > 0.0 && y_velocity < 0.0 ) ||
+			( hit_bottom && hit_left && x_velocity > 0.0 && y_velocity > 0.0 ) ) {
 			ball.bounce_diagonally();
 		//Condition the ball hit the top or bottom
-		else if( hit_top || hit_bottom )
+		} else if( hit_top || hit_bottom ) {
 			ball.bounce_vertically();
 		//Condition the ball hit the left or right
-		else if( hit_right || hit_left )
+		} else if( hit_right || hit_left ) {
 			ball.bounce_horizontally();
+		}
 		to_return = true;
 	}
 	return to_return;

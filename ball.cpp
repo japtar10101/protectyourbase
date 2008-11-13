@@ -4,9 +4,6 @@
 
 Ball::Ball() :
 Graphic( 10.0, 10.0, true, true ), radius( default_radius ) {
-	//seed the random variable to time
-	srand( time( NULL ) );
-	
 	//grab a random value between (but not equal to) 0 and 1
 	float random = 0.0;
 	while( random < 0.1 || random > 0.9 ) {
@@ -29,9 +26,6 @@ Graphic( 10.0, 10.0, true, true ), radius( default_radius ) {
 
 Ball::Ball( float radius_val ) :
 Graphic( 10.0, 10.0, true, true ), radius( radius ) {
-	//seed the random variable to time
-	srand( time( NULL ) );
-	
 	//grab a random value between (but not equal to) 0 and 1
 	float random = 0.0;
 	while( random < 0.1 || random > 0.9 ) {
@@ -54,9 +48,6 @@ Graphic( 10.0, 10.0, true, true ), radius( radius ) {
 
 Ball::Ball( float radius_val, float x_coord, float y_coord ) :
 Graphic( x_coord, y_coord, true, true ), radius( radius ) {
-	//seed the random variable to time
-	srand( time( NULL ) );
-	
 	//grab a random value between (but not equal to) 0 and 1
 	float random = 0.0;
 	while( random < 0.1 || random > 0.9 ) {
@@ -79,9 +70,6 @@ Graphic( x_coord, y_coord, true, true ), radius( radius ) {
 
 Ball::Ball( float radius_val, float x_coord, float y_coord, float velocity ) :
 Graphic( x_coord, y_coord, true, true ), radius( radius ) {
-	//seed the random variable to time
-	srand( time( NULL ) );
-	
 	//grab a random value between (but not equal to) 0 and 1
 	float random = 0.0;
 	while( random < 0.1 || random > 0.9 ) {
