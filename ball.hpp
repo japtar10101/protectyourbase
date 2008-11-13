@@ -8,9 +8,9 @@
 class Ball : public Graphic {
 private:
 	static const float default_radius = 0.4;
-	static const float default_velocity = 0.015;
+	static const float default_velocity = 0.012;
 	static const float increment_velocity = 1.05;
-	static const float maximum_velocity = 0.4;
+	static const float maximum_velocity = 0.3;
 
 protected:
 	float radius;

@@ -10,10 +10,10 @@ Ball ball;
 
 //make the display function
 void display() {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear( GL_COLOR_BUFFER_BIT );
 	ball.draw();
+	glutSwapBuffers();
 	glutPostRedisplay();
-	glFlush(); 
 }
 
 //set the animations
@@ -61,7 +61,7 @@ int main( int argc, char** argv ) {
 	ball = Ball();
 	//basic setup
 	glutInit( &argc, argv );
-	glutInitDisplayMode( GLUT_SINGLE | GLUT_RGB );
+	glutInitDisplayMode( GLUT_DOUBLE | GLUT_RGB );
 	//animation function
 	glutTimerFunc( 1, animation, 0 );
 	//window setup
