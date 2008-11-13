@@ -90,7 +90,7 @@ void Graphic::animate() {
 
 /**** boundary functions ****/
 
-float Graphic::top() {
+float Graphic::bottom() {
 	return y;
 }
 

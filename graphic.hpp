@@ -55,9 +55,9 @@ public:
 	virtual void force_animate() = 0;
 	
 	//boundary functions
-	virtual float top();
+	virtual float bottom();
 	virtual float left();
-	virtual float bottom() = 0;
+	virtual float top() = 0;
 	virtual float right() = 0;
 };
 
