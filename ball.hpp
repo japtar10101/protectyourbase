@@ -7,10 +7,10 @@
 
 class Ball : public Graphic {
 private:
-	static const float default_radius = 10;
-	static const float default_velocity = 0.002;
+	static const float default_radius = 0.4;
+	static const float default_velocity = 0.015;
 	static const float increment_velocity = 1.05;
-	static const float maximum_velocity = 0.04;
+	static const float maximum_velocity = 0.4;
 
 protected:
 	float radius;
@@ -45,7 +45,6 @@ public:
 	float top();
 	float bottom();
 	
-private:
 	//helper functions
 	float velocity();
 };
