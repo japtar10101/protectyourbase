@@ -31,7 +31,6 @@ float Block::get_height() {
 /**** functions to override ****/
 
 void Block::force_draw() {
-	glColor3f( 1.0, 0.0, 0.0 );
 	glBegin( GL_POLYGON );
 		glVertex2f( x, y );
 		glVertex2f( x, y + height );
@@ -41,7 +40,7 @@ void Block::force_draw() {
 }
 
 void Block::force_animate() {
-	//do nothing special
+	//nothing special
 	animated = false;
 }
 

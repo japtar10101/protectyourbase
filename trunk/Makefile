@@ -2,18 +2,21 @@ LDLIBS = -lglut -lGL -lGLU -lXmu -lX11 -lm -L/usr/X11R6/lib -g
 GDB = -g -Wall -c
 
 game: main.o
-	g++ $(LDLIBS) main.o block.o ball.o graphic.o color.o image.o -o game
+	g++ $(LDLIBS) main.o destructable_block.o block.o ball.o graphic.o color.o image.o -o game
 
-main.o: main.cpp ball.o block.o
+main.o: main.cpp ball.o destructable_block.o
 	g++ $(GDB) main.cpp
 
 # compile various blocks
+destructable_block.o: destructable_block.cpp destructable_block.h block.o color.o
+	g++ $(GDB) destructable_block.cpp
+
 block.o: block.cpp block.h graphic.o
 	g++ $(GDB) block.cpp
 
 #compile ball
 ball.o: ball.cpp ball.h graphic.o color.o
-	g++ $(GDB) ball.h ball.cpp
+	g++ $(GDB) ball.cpp
 
 #Where everything roots from
 graphic.o: graphic.cpp graphic.h

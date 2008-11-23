@@ -24,7 +24,7 @@ public:
 	float get_height();
 	
 	//functions to override
-	void force_draw();
+	virtual void force_draw();
 	virtual void force_animate();
 	float right();
 	float top();
