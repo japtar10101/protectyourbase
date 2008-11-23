@@ -1,8 +1,8 @@
 #ifndef BLOCK_H
 #define BLOCK_H
 
-#include "graphic.hpp"
-#include "ball.hpp"
+#include "graphic.h"
+#include "ball.h"
 
 class Block : public Graphic {
 private:

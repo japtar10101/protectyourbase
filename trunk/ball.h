@@ -1,7 +1,7 @@
 #ifndef BALL_H
 #define BALL_H
 
-#include "graphic.hpp"
+#include "graphic.h"
 
 #include <ctime>
 
