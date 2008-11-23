@@ -16,64 +16,13 @@ Graphic::Graphic( float x_coord, float y_coord,
 x( x_coord ), y( y_coord ), visible( is_visible ),
 	animated( is_animated ) {}
 
-/**** Getter and setter for x ****/
-
+/**** virtual setters ****/
 void Graphic::set_x( float x_coord ) {
 	x = x_coord;
 }
 
-float Graphic::get_x() {
-	return x;
-}
-
-/**** Getter and setter for y ****/
-
 void Graphic::set_y( float y_coord ) {
 	y = y_coord;
-}
-
-float Graphic::get_y() {
-	return y;
-}
-
-/**** Getter and setter for visible ****/
-
-void Graphic::set_visible( bool is_visible ) {
-	visible = is_visible;
-}
-
-bool Graphic::get_visible() {
-	return visible;
-}
-
-/**** Getter and setter for animated ****/
-
-void Graphic::set_animated( bool is_animated ) {
-	animated = is_animated;
-}
-
-bool Graphic::get_animated() {
-	return animated;
-}
-
-/**** Intuitive setter for visible ****/
-
-void Graphic::show() {
-	visible = true;
-}
-
-void Graphic::hide() {
-	visible = false;
-}
-
-/**** Intuitive setter for animated ****/
-
-void Graphic::play_animation() {
-	animated = true;
-}
-
-void Graphic::stop_animation() {
-	animated = false;
 }
 
 /**** draw and animate ****/

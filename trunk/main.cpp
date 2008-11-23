@@ -1,3 +1,5 @@
+#include <ctime>
+
 #include "ball.h"
 #include "block.h"
 
