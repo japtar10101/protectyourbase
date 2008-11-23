@@ -13,8 +13,8 @@ in this game
 #define DEGR_TO_RADIANS ( 3.14159 / 180 );
 #define DUMP( variable ) std::cout << "File " << __FILE__ << ", line "\
 	<< __LINE__ << ":\n" << #variable " = " << variable << std::endl
-#define DEBUG( string ) std::cout << "File " << __FILE__ << ", line "\
-	<< __LINE__ << ":\n" << string << std::endl
+#define DEBUG( string ) printf( "File %s, line %d: %s\n", \
+	__FILE__, __LINE__, string )
 #define DEBUG_VAR( string, variable ) printf( "File %s, line %d:\n"\
 	#string "\n", __FILE__, __LINE__, variable )
 
