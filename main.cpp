@@ -1,5 +1,5 @@
-#include "ball.hpp"
-#include "block.hpp"
+#include "ball.h"
+#include "block.h"
 
 /**** initialize variables ****/
 static const int window_size_width = 700, window_size_height = 700,
@@ -11,6 +11,7 @@ Ball ball;
 Block testing;
 Block testing2;
 Block testing3;
+Block testing4;
 
 //make the display function
 void display() {
@@ -19,6 +20,7 @@ void display() {
 	testing.draw();
 	testing2.draw();
 	testing3.draw();
+	testing4.draw();
 	glutSwapBuffers();
 	glutPostRedisplay();
 }
@@ -38,6 +40,7 @@ void animation( int value ) {
 	testing.ball_collision( ball );
 	testing2.ball_collision( ball );
 	testing3.ball_collision( ball );
+	testing4.ball_collision( ball );
 	//should we increment the speed?
 	if( increase_velocity ) ball.increase_velocity();
 	//animate and redisplay.
@@ -72,8 +75,9 @@ int main( int argc, char** argv ) {
 	srand( time( NULL ) );
 	ball = Ball();
 	testing = Block( 5.0, 5.0, 2.0, 2.0 );
-	testing2 = Block( 15.0, 5.0, 2.0, 2.0 );
-	testing3 = Block( 5.0, 15.0, 2.0, 2.0 );
+	testing2 = Block( 13.0, 5.0, 2.0, 2.0 );
+	testing3 = Block( 5.0, 13.0, 2.0, 2.0 );
+	testing4 = Block( 13.0, 13.0, 2.0, 2.0 );
 	//basic setup
 	glutInit( &argc, argv );
 	glutInitDisplayMode( GLUT_DOUBLE | GLUT_RGB );

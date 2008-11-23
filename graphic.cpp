@@ -2,7 +2,7 @@
 class to be extended by almost every objects
 in this game
 */
-#include "graphic.hpp"
+#include "graphic.h"
 
 /**** Constructors ****/
 
