@@ -1,23 +1,23 @@
-#ifndef DESTRUCTABLE_BLOCK_H
-#define DESTRUCTABLE_BLOCK_H
+#ifndef DESTRUCTIBLE_BLOCK_H
+#define DESTRUCTIBLE_BLOCK_H
 
 #include "block.h"
 #include "color.h"
 
-class DestructableBlock : public Block {
+class DestructibleBlock : public Block {
 private:
 	Color color;
 	
 public:
 	//constructor
-	DestructableBlock();
-	DestructableBlock( float red, float green, float blue );
-	DestructableBlock( float x_coord, float y_coord );
-	DestructableBlock( float x_coord, float y_coord,
+	DestructibleBlock();
+	DestructibleBlock( float red, float green, float blue );
+	DestructibleBlock( float x_coord, float y_coord );
+	DestructibleBlock( float x_coord, float y_coord,
 		float red, float green, float blue );
-	DestructableBlock( float x_coord, float y_coord,
+	DestructibleBlock( float x_coord, float y_coord,
 		float set_width, float set_height );
-	DestructableBlock( float x_coord, float y_coord,
+	DestructibleBlock( float x_coord, float y_coord,
 		float set_width, float set_height,
 		float red, float green, float blue );
 	

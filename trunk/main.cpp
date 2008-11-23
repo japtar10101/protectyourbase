@@ -1,7 +1,7 @@
 #include <ctime>
 
 #include "ball.h"
-#include "destructable_block.h"
+#include "destructible_block.h"
 
 /**** initialize variables ****/
 static const int window_size_width = 700, window_size_height = 700,
@@ -11,9 +11,9 @@ static const char *window_title = "The Game!!!";
 static const GLdouble width = 20, height = 20;
 Ball ball;
 Block testing;
-DestructableBlock testing2;
+DestructibleBlock testing2;
 Block testing3;
-DestructableBlock testing4;
+DestructibleBlock testing4;
 
 //make the display function
 void display() {
@@ -81,9 +81,9 @@ int main( int argc, char** argv ) {
 	srand( time( NULL ) );
 	ball = Ball();
 	testing = Block( 5.0, 5.0, 2.0, 2.0 );
-	testing2 = DestructableBlock( 13.0, 5.0, 2.0, 2.0, 1.0, 0.0, 0.0 );
+	testing2 = DestructibleBlock( 13.0, 5.0, 2.0, 2.0, 1.0, 0.0, 0.0 );
 	testing3 = Block( 5.0, 13.0, 2.0, 2.0 );
-	testing4 = DestructableBlock( 13.0, 13.0, 2.0, 2.0, 0.0, 0.0, 1.0 );
+	testing4 = DestructibleBlock( 13.0, 13.0, 2.0, 2.0, 0.0, 0.0, 1.0 );
 	//basic setup
 	glutInit( &argc, argv );
 	glutInitDisplayMode( GLUT_DOUBLE | GLUT_RGB );
