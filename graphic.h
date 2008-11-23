@@ -32,20 +32,20 @@ public:
 	
 	//getters and setters
 	//I made setters for x and y virtual
+	float get_x() 		{ return x; }
+	float get_y()		{ return y; }
+	bool get_visible()	{ return visible; }
+	bool get_animated()	{ return animated; }
 	virtual void set_x( float x_coord );
-	float get_x();
 	virtual void set_y( float y_coord );
-	float get_y();
-	void set_visible( bool is_visible );
-	bool get_visible();
-	void set_animated( bool is_animated );
-	bool get_animated();
+	void set_visible( bool is_visible )   { visible = is_visible; }
+	void set_animated( bool is_animated ) { animated = is_animated; }
 	
 	//setters with a more intuitive name
-	void show();
-	void hide();
-	void play_animation();
-	void stop_animation();
+	void show() 			{ visible = true; }
+	void hide()				{ visible = false; }
+	void play_animation()	{ animated = true; }
+	void stop_animation()	{ animated = false; }
 	
 	//draw and animate functions
 	//they HAVE to be virtual
