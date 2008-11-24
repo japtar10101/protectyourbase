@@ -84,7 +84,15 @@ Paddle::Paddle( float x_coord, float y_coord,
 	Color *paddle_color ) :
 Block( x_coord, y_coord, set_width, set_height ),
 color( paddle_color ),
-horizontal( move_horizontal ) {}
+horizontal( move_horizontal ) {
+	if( horizontal ) {
+		lower_limit = x_coord;
+		upper_limit = x_coord + range_of_movement;
+	} else {
+		lower_limit = y_coord;
+		upper_limit = y_coord + range_of_movement;
+	}
+}
 
 Paddle::~Paddle() {
 	if( color ) {
