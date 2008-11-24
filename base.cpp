@@ -230,8 +230,8 @@ void Base::force_animate() {
 	if( base->get_animated() ) {
 		base->animate();
 		hide();
-		stop_animation();
 	}
+    stop_animation();
 }
 
 float Base::top() {
