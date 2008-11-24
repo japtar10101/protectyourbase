@@ -2,7 +2,7 @@ LDLIBS = -lglut -lGL -lGLU -lXmu -lX11 -lm -L/usr/X11R6/lib -g
 GDB = -g -Wall -c
 
 game: main.o
-	g++ $(LDLIBS) main.o base.o paddle.o destructible_block.o block.o ball.o graphic.o color.o image.o -o game
+	g++ $(LDLIBS) main.o base.o paddle.o destructible_block.o block.o ball.o graphic.o color.o -o game
 
 main.o: main.cpp base.o
 	g++ $(GDB) main.cpp
