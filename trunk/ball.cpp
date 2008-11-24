@@ -3,7 +3,7 @@
 /**** Constructor ****/
 
 Ball::Ball() :
-Graphic( 10.0, 10.0, true, true ),
+Graphic( 0.0, 0.0, true, true ),
 radius( default_radius ),
 color( 1.0, 1.0, 1.0 ) {
 	//grab a random value between (but not equal to) 0 and 1
@@ -27,8 +27,8 @@ color( 1.0, 1.0, 1.0 ) {
 }
 
 Ball::Ball( float radius_val ) :
-Graphic( 10.0, 10.0, true, true ),
-radius( radius ),
+Graphic( 0.0, 0.0, true, true ),
+radius( radius_val ),
 color( 1.0, 1.0, 1.0 ) {
 	//grab a random value between (but not equal to) 0 and 1
 	float random = 0.0;
@@ -52,7 +52,7 @@ color( 1.0, 1.0, 1.0 ) {
 
 Ball::Ball( float radius_val, float x_coord, float y_coord ) :
 Graphic( x_coord, y_coord, true, true ),
-radius( radius ),
+radius( radius_val ),
 color( 1.0, 1.0, 1.0 ) {
 	//grab a random value between (but not equal to) 0 and 1
 	float random = 0.0;
@@ -76,7 +76,7 @@ color( 1.0, 1.0, 1.0 ) {
 
 Ball::Ball( float radius_val, float x_coord, float y_coord, float velocity ) :
 Graphic( x_coord, y_coord, true, true ),
-radius( radius ),
+radius( radius_val ),
 color( 1.0, 1.0, 1.0 ) {
 	//grab a random value between (but not equal to) 0 and 1
 	float random = 0.0;

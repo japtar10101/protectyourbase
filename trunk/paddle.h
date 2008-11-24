@@ -52,6 +52,7 @@ public:
 	
 	//override function
 	void force_draw();
+	bool ball_collision( Ball &ball );
 };
 
 #endif
