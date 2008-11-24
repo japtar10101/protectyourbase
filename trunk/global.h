@@ -16,6 +16,13 @@
 #define DEBUG_VAR( string, variable ) printf( "File %s, line %d: "\
 	#string "\n", __FILE__, __LINE__, variable )
 
+/**** "sane" pointer destructor ****/
+
+#define DESTROY( pointer ) if( pointer ) {\
+	delete pointer;\
+	pointer = NULL;\
+}
+
 /**** Window traits ****/
 
 static const int
