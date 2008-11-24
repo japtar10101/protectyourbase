@@ -2,7 +2,7 @@
 
 /**** Contructor & Destructor ****/
 
-Base::Base( Corner corner, float red, float green, float blue ) :
+Base::Base( Corner corner, float red, float green, float blue ) : Graphic(),
 base_color( new Color( red, green, blue ) ),
 //set everything to null
 horizontal( NULL ), vertical( NULL ), base( NULL ) {
@@ -31,8 +31,7 @@ horizontal( NULL ), vertical( NULL ), base( NULL ) {
 	}
 }
 
-Base::Base( Corner corner, Color *color ) :
-base_color( color ),
+Base::Base( Corner corner, Color *color ) : Graphic(), base_color( color ),
 //set everything to null
 horizontal( NULL ), vertical( NULL ), base( NULL ) {
 	for( int index = 0; index < NUM_DESTRUCTIBLE_BLOCKS; ++index )
