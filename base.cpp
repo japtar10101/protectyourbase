@@ -7,7 +7,7 @@ base_color( new Color( red, green, blue ) ) {
 	//variables used commonly in all arguements
 	int index = 0;
 	Color *level1 = new Color( 1.0, 0.0, 0.0 );
-	Color *level2 = new Color( 1.0, 5.0, 0.0 );
+	Color *level2 = new Color( 1.0, 0.5, 0.0 );
 	Color *level3 = new Color( 1.0, 1.0, 0.0 );
 	
 	//Different shapes for each corner
