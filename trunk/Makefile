@@ -8,6 +8,9 @@ main.o: main.cpp base.o
 	g++ $(GDB) main.cpp
 
 # compile classes that puts many things together
+player.o: player.cpp player.h base.o
+	g++ $(GDB) player.cpp
+
 base.o: base.cpp base.h paddle.o destructible_block.o
 	g++ $(GDB) base.cpp
 
