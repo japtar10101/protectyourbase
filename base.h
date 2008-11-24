@@ -4,37 +4,42 @@
 #include "destructible_block.h"
 #include "paddle.h"
 
+#define NUM_DESTRUCTIBLE_BLOCKS 7
+
 class Base : public Graphic {
 private:
-	#define NUM_DESTRUCTIBLE_BLOCKS 7
-	static const Color level_1_color( 1.0, 0.0, 0.0 );
-	static const Color level_2_color( 1.0, 1.0, 0.0 );
-	static const Color level_3_color( 0.0, 1.0, 0.0 );
-	
 	Color *base_color;
 	Paddle *horizontal;
 	Paddle *vertical;
-	DestrutibleBlock *base;
-	DestrutibleBlock *defense[NUM_DESTRUCTIBLE_BLOCKS];
+	DestructibleBlock *base;
+	DestructibleBlock *defense[NUM_DESTRUCTIBLE_BLOCKS];
+	
 public:
 	//Corner enumerator
 	enum Corner {
-		top-right,
-		top-left,
-		bottom-right,
-		bottom-left
+		top_right,
+		top_left,
+		bottom_right,
+		bottom_left
 	};
 	
 	//Constructor
-	Base( Corner corner );
 	Base( Corner corner, float red, float green, float blue );
 	
-	//Functions to move the paddles
-	controls( unsigned char key );
-	controls( bool key[256] );
+	//Destructor
+	~Base();
+	
+	//Functions that moves the paddles
+	void move_up()		{ vertical->move_up(); }
+	void move_down()	{ vertical->move_down(); }
+	void move_left()	{ horizontal->move_left(); }
+	void move_right()	{ horizontal->move_right(); }
+	
+	//function indicating this base is "alive"
+	bool is_intact() { return visible; };
 	
 	//Function for collision detection
-	bool ball_collision( Ball &ball );
+	bool ball_collision( Ball *ball );
 	
 	//Functions that has to be overridden
 	void force_draw();

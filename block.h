@@ -30,7 +30,7 @@ public:
 	float top();
 	
 	//collision detection
-	virtual bool ball_collision( Ball &ball );
+	virtual bool ball_collision( Ball *ball );
 };
 
 #endif

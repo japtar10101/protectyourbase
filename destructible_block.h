@@ -6,10 +6,10 @@
 
 class DestructibleBlock : public Block {
 private:
-	Color color;
+	Color *color;
 	
 public:
-	//constructor
+	//constructor & destructor
 	DestructibleBlock();
 	DestructibleBlock( float red, float green, float blue );
 	DestructibleBlock( float x_coord, float y_coord );
@@ -20,14 +20,18 @@ public:
 	DestructibleBlock( float x_coord, float y_coord,
 		float set_width, float set_height,
 		float red, float green, float blue );
+	DestructibleBlock( float x_coord, float y_coord,
+		float set_width, float set_height,
+		Color *block_color );
+	~DestructibleBlock();
 	
 	//getter
-	Color &get_color();
+	Color *get_color();
 	
 	//override function
 	void force_draw();
 	void force_animate();
-	bool ball_collision( Ball &ball );
+	bool ball_collision( Ball *ball );
 };
 
 #endif

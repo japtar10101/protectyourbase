@@ -3,7 +3,6 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-//#include <GL/glut.h>
 #include <math.h>
 
 #include "global.h"
