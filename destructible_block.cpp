@@ -1,40 +1,24 @@
 #include "destructible_block.h"
 
+int DestructibleBlock::display_list_id;
+
 /**** LOTS of constructors and destructor ****/
 
-DestructibleBlock::DestructibleBlock() : Block(), color() {}
-
-DestructibleBlock::DestructibleBlock( float red, float green,
-	float blue ) : Block(), color( new Color( red, green, blue ) ) {}
-
-DestructibleBlock::DestructibleBlock( float x_coord, float y_coord ) :
-Block( x_coord, y_coord ), color() {}
-
-DestructibleBlock::DestructibleBlock(  float x_coord, float y_coord,
-	float red, float green, float blue ) :
-Block( x_coord, y_coord ), color( new Color( red, green, blue ) ) {}
-
-DestructibleBlock::DestructibleBlock( float x_coord, float y_coord,
-	float set_width, float set_height ) :
-Block( x_coord, y_coord, set_width, set_height ), color() {}
-
-DestructibleBlock::DestructibleBlock( float x_coord, float y_coord,
-	float set_width, float set_height,
-	float red, float green, float blue ) :
-Block( x_coord, y_coord, set_width, set_height ),
-color( new Color( red, green, blue ) ) {}
+DestructibleBlock::DestructibleBlock() :
+Block(), id( display_list_id++ ), color( NULL ) {
+	gl_compile();
+}
 
 DestructibleBlock::DestructibleBlock( float x_coord, float y_coord,
 	float set_width, float set_height,
 	Color *block_color ) :
-Block( x_coord, y_coord, set_width, set_height ),
-color( block_color ) {}
+Block( x_coord, y_coord, set_width, set_height ), id( display_list_id++ ),
+color( block_color ) {
+	gl_compile();
+}
 
 DestructibleBlock::~DestructibleBlock() {
-	if( color ) {
-		delete color;
-		color = NULL;
-	}
+	DESTROY( color );
 }
 
 /**** Getter ****/
@@ -42,11 +26,22 @@ Color *DestructibleBlock::get_color() {
 	return color;
 }
 
+void DestructibleBlock::gl_compile() {
+	glNewList( id, GL_COMPILE );
+		if( color ) color->color();
+		glBegin( GL_QUADS );
+			glVertex2f( x, y );
+			glVertex2f( x, y + height );
+			glVertex2f( x + width, y + height );
+			glVertex2f( x + width, y );
+		glEnd();
+	glEndList();
+}
+
 /**** Functions to override ****/
 
 void DestructibleBlock::force_draw() {
-	if( color ) color->color();
-	Block::force_draw();
+	glCallList( id );
 }
 
 void DestructibleBlock::force_animate() {

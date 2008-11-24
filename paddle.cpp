@@ -95,10 +95,7 @@ horizontal( move_horizontal ) {
 }
 
 Paddle::~Paddle() {
-	if( color ) {
-		delete color;
-		color = NULL;
-	}
+	DESTROY( color );
 }
 
 /**** Getter and Setter ****/
