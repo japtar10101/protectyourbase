@@ -1,22 +1,12 @@
-/*
-class to be extended by almost every objects
-in this game
-*/
 #ifndef GRAPHIC_H
 #define GRAPHIC_H
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <GL/glut.h>
+//#include <GL/glut.h>
 #include <math.h>
 
-#define DEGR_TO_RADIANS ( 3.14159 / 180 );
-#define DUMP( variable ) std::cout << "File " << __FILE__ << ", line "\
-	<< __LINE__ << ":\n" << #variable " = " << variable << std::endl
-#define DEBUG( string ) printf( "File %s, line %d: %s\n", \
-	__FILE__, __LINE__, string )
-#define DEBUG_VAR( string, variable ) printf( "File %s, line %d: "\
-	#string "\n", __FILE__, __LINE__, variable )
+#include "global.h"
 
 class Graphic {
 protected:

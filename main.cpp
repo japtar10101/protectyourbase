@@ -5,11 +5,7 @@
 #include "paddle.h"
 
 /**** initialize variables ****/
-static const int window_size_width = 700, window_size_height = 700,
-	//window_position_x = 400, window_position_y = 200;
-	window_position_x = 0, window_position_y = 0;
-static const char *window_title = "The Game!!!";
-static const GLdouble width = 20, height = 20;
+const char *window_title = "The Game!!!";
 Ball ball;
 Block testing;
 DestructibleBlock testing2;
@@ -23,8 +19,8 @@ void display() {
 	glClear( GL_COLOR_BUFFER_BIT );
 	ball.draw();
 	testing.draw();
-	testing2.draw();
 	testing3.draw();
+	testing2.draw();
 	testing4.draw();
 	vertical.draw();
 	horizontal.draw();
@@ -63,7 +59,8 @@ void animation( int value ) {
 }
 
 void controls( unsigned char key, int x, int y ) {
-	//DEBUG_VAR( "key = %c", key );
+	DEBUG_VAR( "key = %c", key );
+	
 	if( key == 'w' ) {
 		DEBUG( "Going up" );
 		vertical.move_up();
@@ -105,7 +102,7 @@ void initialize_window() {
 int main( int argc, char** argv ) {
 	//setup the random variable for Ball constructor
 	srand( time( NULL ) );
-	ball = Ball();
+	ball = Ball( ball_radius, height / 2.0, width / 2.0, beginning_velocity );
 	testing = Block( 5.0, 5.0, 2.0, 2.0 );
 	testing2 = DestructibleBlock( 13.0, 5.0, 2.0, 2.0, 1.0, 0.0, 0.0 );
 	testing3 = Block( 5.0, 13.0, 2.0, 2.0 );

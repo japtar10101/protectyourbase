@@ -22,7 +22,7 @@ ball.o: ball.cpp ball.h graphic.o color.o
 	g++ $(GDB) ball.cpp
 
 #Where everything roots from
-graphic.o: graphic.cpp graphic.h
+graphic.o: graphic.cpp graphic.h global.h
 	g++ $(GDB) graphic.cpp
 
 color.o: color.cpp color.h
@@ -30,3 +30,4 @@ color.o: color.cpp color.h
 
 image.o: image.cpp image.h
 	g++ $(GDB) image.cpp
+
