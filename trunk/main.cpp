@@ -2,6 +2,7 @@
 
 #include "ball.h"
 #include "destructible_block.h"
+#include "paddle.h"
 
 /**** initialize variables ****/
 static const int window_size_width = 700, window_size_height = 700,
@@ -14,6 +15,8 @@ Block testing;
 DestructibleBlock testing2;
 Block testing3;
 DestructibleBlock testing4;
+Paddle vertical;
+Paddle horizontal;
 
 //make the display function
 void display() {
@@ -23,6 +26,8 @@ void display() {
 	testing2.draw();
 	testing3.draw();
 	testing4.draw();
+	vertical.draw();
+	horizontal.draw();
 	glutSwapBuffers();
 	glutPostRedisplay();
 }
@@ -43,6 +48,8 @@ void animation( int value ) {
 	testing2.ball_collision( ball );
 	testing3.ball_collision( ball );
 	testing4.ball_collision( ball );
+	vertical.ball_collision( ball );
+	horizontal.ball_collision( ball );
 	//should we increment the speed?
 	if( increase_velocity ) ball.increase_velocity();
 	//animate and redisplay.
@@ -53,6 +60,25 @@ void animation( int value ) {
 	testing4.animate();
 	display();
 	glutTimerFunc( 1, animation, 0 );
+}
+
+void controls( unsigned char key, int x, int y ) {
+	//DEBUG_VAR( "key = %c", key );
+	if( key == 'w' ) {
+		DEBUG( "Going up" );
+		vertical.move_up();
+	} else if( key == 's' ) {
+		DEBUG( "Going down" );
+		vertical.move_down();
+	}
+	
+	if( key == 'd' ) {
+		DEBUG( "Going right" );
+		horizontal.move_right();
+	} else if( key == 'a' ) {
+		DEBUG( "Going left" );
+		horizontal.move_left();
+	}
 }
 
 void initialize_window() {
@@ -84,6 +110,8 @@ int main( int argc, char** argv ) {
 	testing2 = DestructibleBlock( 13.0, 5.0, 2.0, 2.0, 1.0, 0.0, 0.0 );
 	testing3 = Block( 5.0, 13.0, 2.0, 2.0 );
 	testing4 = DestructibleBlock( 13.0, 13.0, 2.0, 2.0, 0.0, 0.0, 1.0 );
+	vertical = Paddle( 0.0, 0.0, 1.0, 4.0, 16.0, false, 0.0, 1.0, 0.0 );
+	horizontal = Paddle( 0.0, 0.0, 4.0, 1.0, 16.0, true, 0.0, 1.0, 0.0 );
 	//basic setup
 	glutInit( &argc, argv );
 	glutInitDisplayMode( GLUT_DOUBLE | GLUT_RGB );
@@ -91,6 +119,8 @@ int main( int argc, char** argv ) {
 	glutTimerFunc( 1, animation, 0 );
 	//window setup
 	initialize_window();
+	//keyboard function
+	glutKeyboardFunc( controls );
 	//go! main loop!
 	glutMainLoop();
 	return 0;

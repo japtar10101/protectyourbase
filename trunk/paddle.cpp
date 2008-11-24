@@ -121,7 +121,7 @@ void Paddle::move_down() {
 	if( !horizontal ) {
 		y -= velocity;
 		//make sure y is in range
-		if( y > lower_limit )
+		if( y < lower_limit )
 			y = lower_limit;
 	}
 }
@@ -139,8 +139,8 @@ void Paddle::move_left() {
 	if( horizontal ) {
 		x -= velocity;
 		//make sure x is in range
-		if( x > upper_limit )
-			x = upper_limit;
+		if( x < lower_limit )
+			x = lower_limit;
 	}
 }
 

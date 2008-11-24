@@ -15,7 +15,7 @@ in this game
 	<< __LINE__ << ":\n" << #variable " = " << variable << std::endl
 #define DEBUG( string ) printf( "File %s, line %d: %s\n", \
 	__FILE__, __LINE__, string )
-#define DEBUG_VAR( string, variable ) printf( "File %s, line %d:\n"\
+#define DEBUG_VAR( string, variable ) printf( "File %s, line %d: "\
 	#string "\n", __FILE__, __LINE__, variable )
 
 class Graphic {
