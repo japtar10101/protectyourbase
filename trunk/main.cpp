@@ -44,8 +44,6 @@ void animation( int value ) {
 }
 
 void controls( unsigned char key, int x, int y ) {
-	//DEBUG_VAR( "key = %c", key );
-	
 	if( key == 'w' ) {
 		one->move_up();
 		two->move_up();
@@ -93,6 +91,7 @@ void initialize_window() {
 }
 
 int main( int argc, char** argv ) {
+	DestructibleBlock::reset_display_list_id();
 	//setup the random variable for Ball constructor
 	srand( time( NULL ) );
 	ball =  new Ball( ball_radius, grid_height / 2.0, grid_width / 2.0, beginning_velocity );
