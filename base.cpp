@@ -140,8 +140,8 @@ Base::~Base() {
 /**** Function for collision detection ****/
 
 bool Base::ball_collision( Ball *ball ) {
-	bool collide = false;
-	if( base->ball_collision( ball ) ) {
+	animated = base->ball_collision( ball );
+	if( animated ) {
 		base->play_animation();
 		horizontal->play_animation();
 		vertical->play_animation();
@@ -150,13 +150,13 @@ bool Base::ball_collision( Ball *ball ) {
 		}
 		play_animation();
 	} else {
-		collide = horizontal->ball_collision( ball );
-		collide = vertical->ball_collision( ball ) || collide;
+		animated = horizontal->ball_collision( ball );
+		animated = vertical->ball_collision( ball ) || animated;
 		for( int index = 0; index < NUM_DESTRUCTIBLE_BLOCKS; ++index ) {
-			collide = defense[index]->ball_collision( ball ) || collide;
+			animated = defense[index]->ball_collision( ball ) || animated;
 		}
 	}
-	return collide;
+	return animated;
 }
 
 /**** Functions that has to be overridden ****/
@@ -176,9 +176,10 @@ void Base::force_animate() {
 	for( int index = 0; index < NUM_DESTRUCTIBLE_BLOCKS; ++index ) {
 		defense[index]->animate();
 	}
-	if( animated ) {
+	if( base->get_animated() ) {
 		base->animate();
 		hide();
+		stop_animation();
 	}
 }
 
