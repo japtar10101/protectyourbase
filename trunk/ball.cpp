@@ -19,55 +19,6 @@ color( 1.0, 1.0, 1.0 ) {
 	}
 	
 	//calculate the y_vel corresponding to x_vel and default_velocity
-	//note: x_vel has to be less than default_velocity
-	y_vel = (float) sqrt( pow( default_velocity, 2.0 ) - pow( x_vel, 2.0 ) );
-	if( rand() % 2 ) {
-		y_vel *= -1.0;
-	}
-}
-
-Ball::Ball( float radius_val ) :
-Graphic( 0.0, 0.0, true, true ),
-radius( radius_val ),
-color( 1.0, 1.0, 1.0 ) {
-	//grab a random value between (but not equal to) 0 and 1
-	float random = 0.0;
-	while( random < 0.1 || random > 0.9 ) {
-		random = ( (float) rand() ) / ( (float) RAND_MAX + 1.0 );
-	}
-	
-	//give x_vel a random velocity value
-	x_vel = random * default_velocity;
-	if( rand() % 2 ) {
-		x_vel *= -1.0;
-	}
-	
-	//calculate the y_vel corresponding to x_vel and default_velocity
-	//note: x_vel has to be less than default_velocity
-	y_vel = (float) sqrt( pow( default_velocity, 2.0 ) - pow( x_vel, 2.0 ) );
-	if( rand() % 2 ) {
-		y_vel *= -1.0;
-	}
-}
-
-Ball::Ball( float radius_val, float x_coord, float y_coord ) :
-Graphic( x_coord, y_coord, true, true ),
-radius( radius_val ),
-color( 1.0, 1.0, 1.0 ) {
-	//grab a random value between (but not equal to) 0 and 1
-	float random = 0.0;
-	while( random < 0.1 || random > 0.9 ) {
-		random = ( (float) rand() ) / ( (float) RAND_MAX + 1.0 );
-	}
-	
-	//give x_vel a random velocity value
-	x_vel = random * default_velocity;
-	if( rand() % 2 ) {
-		x_vel *= -1.0;
-	}
-	
-	//calculate the y_vel corresponding to x_vel and default_velocity
-	//note: x_vel has to be less than default_velocity
 	y_vel = (float) sqrt( pow( default_velocity, 2.0 ) - pow( x_vel, 2.0 ) );
 	if( rand() % 2 ) {
 		y_vel *= -1.0;
@@ -78,20 +29,17 @@ Ball::Ball( float radius_val, float x_coord, float y_coord, float velocity ) :
 Graphic( x_coord, y_coord, true, true ),
 radius( radius_val ),
 color( 1.0, 1.0, 1.0 ) {
-	//grab a random value between (but not equal to) 0 and 1
+	//same operation as the default constructor
 	float random = 0.0;
 	while( random < 0.1 || random > 0.9 ) {
 		random = ( (float) rand() ) / ( (float) RAND_MAX + 1.0 );
 	}
 	
-	//give x_vel a random velocity value
 	x_vel = random * velocity;
 	if( rand() % 2 ) {
 		x_vel *= -1.0;
 	}
 	
-	//calculate the y_vel corresponding to x_vel and default_velocity
-	//note: x_vel has to be less than default_velocity
 	y_vel = (float) sqrt( pow( velocity, 2.0 ) - pow( x_vel, 2.0 ) );
 	if( rand() % 2 ) {
 		y_vel *= -1.0;
@@ -123,6 +71,7 @@ void Ball::force_draw() {
 	color.color();
 	glBegin( GL_POLYGON );
 	for( int index = 0; index < 360; index += 20 ) {
+		//draw a circle
 		float degInRad = index * DEGR_TO_RADIANS;
 		float x_coord = cos( degInRad );
 		x_coord = x_coord * radius + x;
