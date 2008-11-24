@@ -31,6 +31,7 @@ public:
 	
 	//Constructor
 	Base( Corner corner, float red, float green, float blue );
+	Base( Corner corner, Color *color );
 	
 	//Destructor
 	~Base();
