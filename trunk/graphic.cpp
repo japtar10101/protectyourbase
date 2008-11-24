@@ -33,7 +33,7 @@ void Graphic::draw() {
 }
 
 void Graphic::animate() {
-	if( animated )
+	if( animated && visible )
 		force_animate();
 }
 
