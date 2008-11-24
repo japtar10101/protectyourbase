@@ -2,18 +2,19 @@
 
 /**** Contructor & Destructor ****/
 
-Player::Player( Corner corner1, Corner corner2,
+Player::Player( Base::Corner corner1, Base::Corner corner2,
 	float red, float green, float blue ) :
 Graphic(), base_color( new Color( red, green, blue ) ) {
 	first = new Base( corner1, base_color );
 	second = new Base( corner2, base_color );
 }
 
-Player::Player( Corner corner1, Corner corner2, Color *color ) :
-Graphic(), color( color ), first( corner1, color ), second( corner2, color ) {}
+Player::Player( Base::Corner corner1, Base::Corner corner2, Color *color ) :
+Graphic(), first( new Base( corner1, color ) ),
+second( new Base( corner2, color ) ), base_color( color ) {}
 
 Player::~Player() {
-	DESTROY( color );
+	DESTROY( base_color );
 	DESTROY( first );
 	DESTROY( second );
 }
@@ -43,7 +44,7 @@ void Player::move_left() {
 /**** is player alive? ****/
 
 bool Player::is_alive() {
-    return first->is_visible() || second->is_visible();
+    return first->get_visible() || second->get_visible();
 }
 
 /**** collision detection ****/
@@ -65,4 +66,16 @@ void Player::force_animate() {
     first->animate();
     second->animate();
     stop_animation();
+}
+
+float Player::top() {
+    float first_top = first->top();
+    float second_top = second->top();
+    return ( first_top > second_top ? first_top : second_top );
+}
+
+float Player::right() {
+    float first_top = first->top();
+    float second_top = second->top();
+    return ( first_top > second_top ? first_top : second_top );
 }

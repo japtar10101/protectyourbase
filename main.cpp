@@ -1,14 +1,12 @@
 #include <ctime>
 
-#include "base.h"
+#include "player.h"
 
 /**** initialize variables ****/
-const char *window_title = "The Game!!!";
+const char *window_title = "Protect your base";
 Ball *ball;
-Base *one;
-Base *two;
-Base *three;
-Base *four;
+Player *one;
+Player *two;
 
 //make the display function
 void display() {
@@ -16,8 +14,6 @@ void display() {
 	ball->draw();
 	one->draw();
 	two->draw();
-	three->draw();
-	four->draw();
 	glutSwapBuffers();
 	glutPostRedisplay();
 }
@@ -31,13 +27,9 @@ void animation( int value ) {
 		ball->bounce_vertically();
 	one->ball_collision( ball );
 	two->ball_collision( ball );
-	three->ball_collision( ball );
-	four->ball_collision( ball );
 	//animate and redisplay.
 	one->animate();
 	two->animate();
-	three->animate();
-	four->animate();
 	ball->animate();
 	display();
 	glutTimerFunc( 1, animation, 0 );
@@ -47,25 +39,17 @@ void controls( unsigned char key, int x, int y ) {
 	if( key == 'w' ) {
 		one->move_up();
 		two->move_up();
-		three->move_up();
-		four->move_up();
 	} else if( key == 's' ) {
 		one->move_down();
 		two->move_down();
-		three->move_down();
-		four->move_down();
 	}
 	
 	if( key == 'd' ) {
 		one->move_right();
 		two->move_right();
-		three->move_right();
-		four->move_right();
 	} else if( key == 'a' ) {
 		one->move_left();
 		two->move_left();
-		three->move_left();
-		four->move_left();
 	}
 }
 
@@ -95,10 +79,8 @@ int main( int argc, char** argv ) {
 	//setup the random variable for Ball constructor
 	srand( time( NULL ) );
 	ball =  new Ball( ball_radius, grid_height / 2.0, grid_width / 2.0, beginning_velocity );
-	one = new Base( Base::top_right, 0.0, 0.0, 1.0 );
-	two = new Base( Base::top_left, 0.0, 0.0, 1.0 );
-	three = new Base( Base::bottom_left, 0.0, 0.0, 1.0 );
-	four = new Base( Base::bottom_right, 0.0, 0.0, 1.0 );
+	one = new Player( Base::top_right, Base::top_left, 0.0, 0.0, 1.0 );
+	two = new Player( Base::bottom_right, Base::bottom_left, 0.0, 1.0, .0 );
 	//basic setup
 	glutInit( &argc, argv );
 	glutInitDisplayMode( GLUT_DOUBLE | GLUT_RGB );
