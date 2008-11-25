@@ -69,13 +69,11 @@ void Player::force_animate() {
 }
 
 float Player::top() {
-    float first_top = first->top();
-    float second_top = second->top();
+    float first_top = first->top(), second_top = second->top();
     return ( first_top > second_top ? first_top : second_top );
 }
 
 float Player::right() {
-    float first_top = first->top();
-    float second_top = second->top();
-    return ( first_top > second_top ? first_top : second_top );
+    float first_right = first->right(), second_right = second->right();
+    return ( first_right > second_right ? first_right : second_right );
 }
