@@ -24,13 +24,7 @@ Color *DestructibleBlock::get_color() {
 void DestructibleBlock::gl_compile() {
 	//DEBUG_VAR( "compiling id %d", id );
 	glNewList( id, GL_COMPILE );
-		color->color();
-		glBegin( GL_QUADS );
-			glVertex2f( x, y );
-			glVertex2f( x, y + height );
-			glVertex2f( x + width, y + height );
-			glVertex2f( x + width, y );
-		glEnd();
+		normal_draw();
 	glEndList();
 }
 
