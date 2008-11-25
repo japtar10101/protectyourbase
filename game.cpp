@@ -60,12 +60,12 @@ bool Game::collision() {
 	//is the ball going to bounce off a wall?
 	if( ball->right() > grid_width || ball->left() < 0 ) {
 		ball->bounce_horizontally();
-        //ball->increase_velocity();
+		//ball->increase_velocity();
 		collide = true;
 	}
 	if( ball->top() > grid_height || ball->bottom() < 0 ) {
 		ball->bounce_vertically();
-        //ball->increase_velocity();
+		//ball->increase_velocity();
 		collide = true;
 	}
 	
@@ -85,7 +85,7 @@ Game::Victory Game::winner() {
 	if( !player1 && !player2 ) return neither;
 	else if( !p_one->is_alive() ) return player1;
 	else if( !p_two->is_alive() ) return player2;
-	else                          return neither;
+	else						  return neither;
 }
 
 /**** Functions to override ****/

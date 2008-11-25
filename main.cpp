@@ -76,13 +76,13 @@ void initialize_window() {
 	//window position and size
 	glutInitWindowPosition( window_position_x,
 		window_position_y );
-    glutInitWindowSize( window_size_width,
+	glutInitWindowSize( window_size_width,
 		window_size_height );
 	glutCreateWindow( window_title );
 	
-    //State the game has no depth
-    glDisable( GL_DEPTH_TEST );
-    
+	//State the game has no depth
+	glDisable( GL_DEPTH_TEST );
+	
 	//adjust clipping box
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
