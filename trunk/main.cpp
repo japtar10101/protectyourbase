@@ -62,10 +62,12 @@ void animation( int value ) {
 
 //controls functions
 void push( unsigned char key, int x, int y ) {
+	DEBUG_VAR( "Key pressed %c", key );
 	if( !control_one->push_key( key ) ) control_two->push_key( key );
 }
 
 void raise( unsigned char key, int x, int y ) {
+	DEBUG_VAR( "Key released %c", key );
 	if( !control_one->raise_key( key ) ) control_two->raise_key( key );
 }
 
@@ -101,8 +103,8 @@ void initialize_pointers() {
 	color_two = new Color( 0.0, 0.0, 1.0 );
 	
 	//make controls
-	control_one = new Control( true );
-	control_two = new Control( false );
+	control_one = new Control( player_one_controls );
+	control_two = new Control( player_two_controls );
 	
 	//make the main game
 	protect_your_base =  new Game( Game::vertical,

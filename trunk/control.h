@@ -13,7 +13,7 @@ public:
 	enum Move { up = 0, down, right, left };
 	
 	//Constructor
-	Control( bool player_one );
+	Control( const unsigned char *array );
 	
 	//functions for keyboard
 	bool push_key( unsigned char key );
