@@ -6,7 +6,7 @@
 
 const char *window_title = "Protect your base";
 Game *protect_your_base;
-Color *color_one, *color_two;
+Color *color_one, *color_two, *level1, *level2, *level3;
 Control *control_one, *control_two;
 
 /**** initialize functions ****/
@@ -99,6 +99,9 @@ void initialize_window() {
 //quick initialize pointers
 void initialize_pointers() {
 	//make colors
+	level1 = new Color( 1.0, 0.0, 0.0 );
+	level2 = new Color( 1.0, 0.5, 0.0 );
+	level3 = new Color( 1.0, 1.0, 0.0 );
 	color_one = new Color( 0.0, 1.0, 0.0 );
 	color_two = new Color( 0.0, 0.0, 1.0 );
 	
@@ -108,6 +111,7 @@ void initialize_pointers() {
 	
 	//make the main game
 	protect_your_base =  new Game( Game::vertical,
-		color_one, control_one, color_two, control_two );
+		color_one, control_one, color_two, control_two,
+		level1, level2, level3 );
 }
 

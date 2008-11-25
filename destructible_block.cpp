@@ -11,7 +11,9 @@ Block( x_coord, y_coord, set_width, set_height ), id( 0 ),
 color( block_color ) {}
 
 DestructibleBlock::~DestructibleBlock() {
+	/* Destructible block does not own color
 	DESTROY( color );
+	*/
 }
 
 /**** Getter ****/

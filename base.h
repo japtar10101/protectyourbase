@@ -9,7 +9,8 @@
 
 class Base : public Graphic {
 private:
-	Color *base_color;
+	//member variables
+	Color *base_color, *level1, *level2, *level3;
 	Control *controls;
 	
 	Paddle *horizontal;
@@ -33,7 +34,8 @@ public:
 	enum Corner { top_right, top_left, bottom_right, bottom_left };
 	
 	//Constructor
-	Base( Corner corner, Color *color, Control *setting );
+	Base( Corner corner, Color *color, Control *setting,
+		Color *block1, Color *block2, Color *block3 );
 	
 	//Destructor
 	~Base();

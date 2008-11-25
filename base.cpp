@@ -2,17 +2,14 @@
 
 /**** Contructor & Destructor ****/
 
-Base::Base( Corner corner, Color *color, Control *setting ) :
-Graphic(), base_color( color ), controls( setting ),
+Base::Base( Corner corner, Color *color, Control *setting,
+	Color *block1, Color *block2, Color *block3 ) :
+Graphic(), base_color( color ), level1( block1 ),
+level2( block2 ), level3( block3 ), controls( setting ),
 //set everything to null
 horizontal( NULL ), vertical( NULL ), base( NULL ) {
 	for( int index = 0; index < NUM_DESTRUCTIBLE_BLOCKS; ++index )
 		defense[index] = NULL;
-	
-	//variables used commonly in all arguements
-	Color *level1 = new Color( 1.0, 0.0, 0.0 );
-	Color *level2 = new Color( 1.0, 0.5, 0.0 );
-	Color *level3 = new Color( 1.0, 1.0, 0.0 );
 	
 	//Different shapes for each corner
 	switch( corner ) {
@@ -32,8 +29,10 @@ horizontal( NULL ), vertical( NULL ), base( NULL ) {
 }
 
 Base::~Base() {
+	/* Base does not own color or controls
 	DESTROY( base_color );
 	DESTROY( controls );
+	*/
 	destroy_all();
 }
 

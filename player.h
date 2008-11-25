@@ -5,14 +5,11 @@
 
 class Player : public Graphic {
 private:
-	Color *base_color;
-	Control *controls;
-	
 	Base *first, *second;
 public:
 	//Constructor
-	Player( Base::Corner corner1, Base::Corner corner2,
-		Color *color, Control *setting );
+	Player( Base::Corner corner1, Base::Corner corner2, Color *color,
+		Control *setting, Color *level1, Color *level2, Color *level3 );
 	
 	//Destructor
 	~Player();
