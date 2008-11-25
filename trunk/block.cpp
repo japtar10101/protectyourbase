@@ -2,11 +2,6 @@
 
 /**** Constructor ****/
 
-Block::Block() : Graphic(), width( 1.0 ), height( 1.0 ) {}
-
-Block::Block( float x_coord, float y_coord ) :
-Graphic( x_coord, y_coord ), width( 1.0 ), height( 1.0 ) {}
-
 Block::Block( float x_coord, float y_coord, float set_width, float set_height )
 : Graphic( x_coord, y_coord ), width( set_width ), height( set_height ) {}
 

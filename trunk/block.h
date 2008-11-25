@@ -13,8 +13,6 @@ protected:
 	
 public:
 	//constructor
-	Block();
-	Block( float x_coord, float y_coord );
 	Block( float x_coord, float y_coord, float set_width, float set_height );
 	
 	//getters and setters

@@ -16,10 +16,8 @@ private:
 	
 public:
 	//constructor & destructor
-	Paddle( float x_coord, float y_coord,
-		float set_width, float set_height,
-		float range_of_movement, bool move_horizontal,
-		Color *paddle_color );
+	Paddle( float x_coord, float y_coord, float set_width, float set_height,
+		float range_of_movement, bool move_horizontal, Color *paddle_color );
 	~Paddle();
 	
 	//getter and setter
