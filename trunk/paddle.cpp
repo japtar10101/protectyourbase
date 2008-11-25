@@ -17,7 +17,9 @@ horizontal( move_horizontal ) {
 }
 
 Paddle::~Paddle() {
+	/* Paddle does not own color
 	DESTROY( color );
+	*/
 }
 
 /**** Getter and Setter ****/

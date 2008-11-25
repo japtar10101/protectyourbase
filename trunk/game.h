@@ -5,16 +5,8 @@
 
 class Game : public Graphic {
 private:
-	//private enumerator (here for a reason)
-	enum Mode { game, menu };
-	
-	//internal variables
-	Color *c_one, *c_two;
-	Control *m_one, *m_two;
-	
 	Ball *ball;
 	Player *p_one, *p_two;
-	Mode current_state;
 	
 	//helper functions
 	void destroy_all();
@@ -25,8 +17,8 @@ public:
 	enum Victory { neither, player1, player2 };
 	
 	//Constructor & Destructor
-	Game( Formation game_settings, Color *color1, Control *move1,
-		Color *color2, Control *move2 );
+	Game( Formation game_settings, Color *color1, Control *move1, Color *color2,
+		Control *move2, Color *level1, Color *level2, Color *level3 );
 	~Game();
 	
 	//Function indicating if anyone one, and if so, who.
@@ -44,4 +36,3 @@ public:
 };
 
 #endif
-

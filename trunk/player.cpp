@@ -2,15 +2,13 @@
 
 /**** Contructor & Destructor ****/
 
-Player::Player( Base::Corner corner1, Base::Corner corner2,
-	Color *color, Control *setting ) :
-Graphic(), base_color( color ), controls( setting ),
-first( new Base( corner1, color, setting ) ),
-second( new Base( corner2, color, setting ) ) {}
+Player::Player( Base::Corner corner1, Base::Corner corner2, Color *color,
+	Control *setting, Color *level1, Color *level2, Color *level3 ) :
+Graphic(),
+first( new Base( corner1, color, setting, level1, level2, level3 ) ),
+second( new Base( corner2, color, setting, level1, level2, level3 ) ) {}
 
 Player::~Player() {
-	DESTROY( base_color );
-	DESTROY( controls );
 	DESTROY( first );
 	DESTROY( second );
 }

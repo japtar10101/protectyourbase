@@ -2,13 +2,10 @@
 
 /**** Constructor and Destructor ****/
 
-//TODO: initializer for immediate gameplay
-//Make the menu the default soon
-Game::Game( Formation game_settings, Color *color1, Control *move1,
-	Color *color2, Control *move2 ) : Graphic( 0.0, 0.0, true, true ),
-c_one( color1 ), c_two( color2 ), m_one( move1 ), m_two( move2 ),
-ball( new Ball( ball_radius, grid_height / 2.0, grid_width / 2.0, beginning_velocity ) ),
-current_state( game ) {
+Game::Game( Formation game_settings, Color *color1, Control *move1, Color *color2,
+	Control *move2, Color *level1, Color *level2, Color *level3 ) :
+Graphic( 0.0, 0.0, true, true ),
+ball( new Ball( ball_radius, grid_height / 2.0, grid_width / 2.0, beginning_velocity ) ) {
 	//get the corresponding corners
 	Base::Corner player1[2], player2[2];
 	switch( game_settings ) {
@@ -34,15 +31,13 @@ current_state( game ) {
 	
 	//setup the players
 	DestructibleBlock::reset_display_list_id();
-	p_one = new Player( player1[0], player1[1], c_one, m_one );
-	p_two = new Player( player2[0], player2[1], c_two, m_two );
+	p_one = new Player( player1[0], player1[1], color1, move1,
+		level1, level2, level3 );
+	p_two = new Player( player2[0], player2[1], color2, move2,
+		level1, level2, level3 );
 }
 
 Game::~Game() {
-	DESTROY( c_one );
-	DESTROY( c_two );
-	DESTROY( m_one );
-	DESTROY( m_two );
 	destroy_all();
 }
 
@@ -74,7 +69,7 @@ bool Game::collision() {
 		p_one->ball_collision( ball ) || p_two->ball_collision( ball );
 	
 	//check if any player is alive
-	if( winner() != neither ) current_state = menu;
+	if( winner() != neither ) stop_animation();
 	
 	return collide;
 }
@@ -92,32 +87,22 @@ Game::Victory Game::winner() {
 
 void Game::force_draw() {
 	glClear( GL_COLOR_BUFFER_BIT );
-	
-	if( current_state == game ) {
 		ball->draw();
 		p_one->draw();
 		p_two->draw();
-	} else {
-		//TODO: create a menu graphic
-		ball->draw();
-	}
-	
 	glutSwapBuffers();
 	glutPostRedisplay();
 }
 
 void Game::force_animate() {
-	if( current_state == game ) {
-		collision();
-		move_player_one();
-		move_player_two();
-		p_one->animate();
-		p_two->animate();
-		ball->animate();
-	}
+	collision();
+	move_player_one();
+	move_player_two();
+	p_one->animate();
+	p_two->animate();
+	ball->animate();
 }
 
 float Game::top() { return grid_height; }
 
 float Game::right() { return grid_width; }
-
