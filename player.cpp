@@ -2,9 +2,11 @@
 
 /**** Contructor & Destructor ****/
 
-Player::Player( Base::Corner corner1, Base::Corner corner2, Color *color ) :
-Graphic(), first( new Base( corner1, color ) ),
-second( new Base( corner2, color ) ), base_color( color ) {}
+Player::Player( Base::Corner corner1, Base::Corner corner2,
+	Color *color, Control *setting ) :
+Graphic(), base_color( color ), controls( setting ),
+first( new Base( corner1, color, setting ) ),
+second( new Base( corner2, color, setting ) ) {}
 
 Player::~Player() {
 	DESTROY( base_color );
@@ -14,24 +16,9 @@ Player::~Player() {
 
 /**** move functions ****/
 
-void Player::move_up() {
-    first->move_up();
-    second->move_up();
-}
-
-void Player::move_down() {
-    first->move_down();
-    second->move_down();
-}
-
-void Player::move_right() {
-    first->move_right();
-    second->move_right();
-}
-
-void Player::move_left() {
-    first->move_left();
-    second->move_left();
+void Player::move_paddle() {
+   first->move_paddle();
+   second->move_paddle();
 }
 
 /**** is player alive? ****/

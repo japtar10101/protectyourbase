@@ -7,9 +7,6 @@
 
 #define DEGR_TO_RADIANS ( 3.14159 / 180 );
 
-#define DUMP( variable ) std::cout << "File " << __FILE__ << ", line "\
-	<< __LINE__ << ":\n" << #variable " = " << variable << std::endl
-
 #define DEBUG( string ) printf( "File %s, line %d: %s\n", \
 	__FILE__, __LINE__, string )
 
@@ -40,10 +37,8 @@ static const float
 	beginning_velocity = 0.012;
 
 static const unsigned char
-	control_up[4] = { 'w', 'W', 'p', 'P' }
-	, control_down[4] = { 's', 'S', ';', ':' }
-	, control_left[4] = { 'a', 'A', 'l', 'L' }
-	, control_right[4] = { 'd', 'D', '\'', '"' };
+	player_one_controls[8] = { 'w', 'W', 's', 'S', 'a', 'A', 'd', 'D' }
+	, player_two_controls[8] = { 'p', 'P', ';', ':', 'l', 'L', '\'', '"' };
 
 #endif
 

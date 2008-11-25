@@ -2,7 +2,7 @@ LDLIBS = -lglut -lGL -lGLU -lXmu -lX11 -lm -L/usr/X11R6/lib -g
 GDB = -g -Wall -c
 
 game: main.o
-	g++ $(LDLIBS) main.o game.o player.o base.o paddle.o destructible_block.o block.o ball.o graphic.o color.o -o game
+	g++ $(LDLIBS) main.o game.o player.o base.o paddle.o destructible_block.o block.o ball.o graphic.o control.o color.o -o game
 
 main.o: main.cpp game.o
 	g++ $(GDB) main.cpp
@@ -14,7 +14,7 @@ game.o: game.cpp game.h player.o
 player.o: player.cpp player.h base.o
 	g++ $(GDB) player.cpp
 
-base.o: base.cpp base.h paddle.o destructible_block.o
+base.o: base.cpp base.h paddle.o destructible_block.o control.o
 	g++ $(GDB) base.cpp
 
 # compile various blocks
@@ -35,9 +35,13 @@ ball.o: ball.cpp ball.h graphic.o color.o
 graphic.o: graphic.cpp graphic.h global.h
 	g++ $(GDB) graphic.cpp
 
+control.o: control.cpp control.h global.h
+	g++ $(GDB) control.cpp
+
 color.o: color.cpp color.h
 	g++ $(GDB) color.cpp
 
-image.o: image.cpp image.h
-	g++ $(GDB) image.cpp
+# A program I considered...
+#image.o: image.cpp image.h
+#	g++ $(GDB) image.cpp
 

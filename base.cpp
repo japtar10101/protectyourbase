@@ -2,7 +2,8 @@
 
 /**** Contructor & Destructor ****/
 
-Base::Base( Corner corner, Color *color ) : Graphic(), base_color( color ),
+Base::Base( Corner corner, Color *color, Control *setting ) :
+Graphic(), base_color( color ), controls( setting ),
 //set everything to null
 horizontal( NULL ), vertical( NULL ), base( NULL ) {
 	for( int index = 0; index < NUM_DESTRUCTIBLE_BLOCKS; ++index )
@@ -32,6 +33,7 @@ horizontal( NULL ), vertical( NULL ), base( NULL ) {
 
 Base::~Base() {
 	DESTROY( base_color );
+	DESTROY( controls );
 	destroy_all();
 }
 
@@ -162,11 +164,25 @@ void Base::generate_bottom_left_corner( Color *level1, Color *level2, Color *lev
 		x + 6.0, y, 1.0, 6.0, level1 );
 }
 
+/*** Function that moves the paddles ****/
+void Base::move_paddle() {
+	//move paddles based on controls
+	if( controls->get_key_condition( Control::up ) )
+		vertical->move_up();
+	if( controls->get_key_condition( Control::down ) )
+		vertical->move_down();
+	if( controls->get_key_condition( Control::left ) )
+		vertical->move_left();
+	if( controls->get_key_condition( Control::right ) )
+		vertical->move_right();
+}
+
 /**** Function for collision detection ****/
 
 bool Base::ball_collision( Ball *ball ) {
 	animated = base->ball_collision( ball );
 	if( animated ) {
+		//base hit, destroy everything
 		base->play_animation();
 		horizontal->play_animation();
 		vertical->play_animation();
@@ -175,6 +191,7 @@ bool Base::ball_collision( Ball *ball ) {
 		}
 		play_animation();
 	} else {
+		//else, check everything if they're hit
 		animated = horizontal->ball_collision( ball );
 		animated = vertical->ball_collision( ball ) || animated;
 		for( int index = 0; index < NUM_DESTRUCTIBLE_BLOCKS; ++index )

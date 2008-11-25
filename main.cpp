@@ -35,7 +35,8 @@ int main( int argc, char** argv ) {
 	//animation function
 	glutTimerFunc( 1, animation, 0 );
 	
-	//keyboard function
+	//keyboard function (also ignore repeated key presses)
+	glutIgnoreKeyRepeat( false );
 	glutKeyboardFunc( controls );
 	
 	//go! main loop!

@@ -5,20 +5,20 @@
 
 class Player : public Graphic {
 private:
-	Base *first, *second;
 	Color *base_color;
+	Control *controls;
+	
+	Base *first, *second;
 public:
 	//Constructor
-	Player( Base::Corner corner1, Base::Corner corner2, Color *color );
+	Player( Base::Corner corner1, Base::Corner corner2,
+		Color *color, Control *setting );
 	
 	//Destructor
 	~Player();
 	
-	//Functions that moves the paddles
-	void move_up();
-	void move_down();
-	void move_left();
-	void move_right();
+	//Function that moves the paddles
+	void move_paddle();
 	
 	//function indicating this player is "alive"
 	bool is_alive();
