@@ -219,7 +219,7 @@ void Base::force_animate() {
 		base->animate();
 		hide();
 	}
-    stop_animation();
+	stop_animation();
 }
 
 float Base::top() {
