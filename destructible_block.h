@@ -6,8 +6,8 @@
 
 class DestructibleBlock : public Block {
 private:
-	static int display_list_id;
-	int id;
+	static GLuint display_list_id;
+	GLuint id;
 	Color *color;
 	
 	//Display list functions
