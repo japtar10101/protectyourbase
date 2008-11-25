@@ -9,8 +9,6 @@ private:
 	Color *base_color;
 public:
 	//Constructor
-	Player( Base::Corner corner1, Base::Corner corner2,
-        float red, float green, float blue );
 	Player( Base::Corner corner1, Base::Corner corner2, Color *color );
 	
 	//Destructor

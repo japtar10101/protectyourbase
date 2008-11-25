@@ -22,10 +22,8 @@ public:
 	enum Formation { horizontal, vertical, diagonal };
 	enum Victory { neither, player1, player2 };
 	
-	//Constructor
+	//Constructor & Destructor
 	Game( Formation game_settings, Color *color1, Color *color2 );
-	
-	//Destructor
 	~Game();
 	
 	//Function indicating if anyone one, and if so, who.

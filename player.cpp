@@ -2,13 +2,6 @@
 
 /**** Contructor & Destructor ****/
 
-Player::Player( Base::Corner corner1, Base::Corner corner2,
-	float red, float green, float blue ) :
-Graphic(), base_color( new Color( red, green, blue ) ) {
-	first = new Base( corner1, base_color );
-	second = new Base( corner2, base_color );
-}
-
 Player::Player( Base::Corner corner1, Base::Corner corner2, Color *color ) :
 Graphic(), first( new Base( corner1, color ) ),
 second( new Base( corner2, color ) ), base_color( color ) {}

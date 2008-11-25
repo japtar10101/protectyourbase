@@ -2,35 +2,6 @@
 
 /**** Contructor & Destructor ****/
 
-Base::Base( Corner corner, float red, float green, float blue ) : Graphic(),
-base_color( new Color( red, green, blue ) ),
-//set everything to null
-horizontal( NULL ), vertical( NULL ), base( NULL ) {
-	for( int index = 0; index < NUM_DESTRUCTIBLE_BLOCKS; ++index )
-		defense[index] = NULL;
-	
-	//variables used commonly in all arguements
-	Color *level1 = new Color( 1.0, 0.0, 0.0 );
-	Color *level2 = new Color( 1.0, 0.5, 0.0 );
-	Color *level3 = new Color( 1.0, 1.0, 0.0 );
-	
-	//Different shapes for each corner
-	switch( corner ) {
-		case top_right:
-			generate_top_right_corner( level1, level2, level3 );
-			break;
-		case top_left:
-			generate_top_left_corner( level1, level2, level3 );
-			break;
-		case bottom_right:
-			generate_bottom_right_corner( level1, level2, level3 );
-			break;
-		case bottom_left:
-		default:
-			generate_bottom_left_corner( level1, level2, level3 );
-	}
-}
-
 Base::Base( Corner corner, Color *color ) : Graphic(), base_color( color ),
 //set everything to null
 horizontal( NULL ), vertical( NULL ), base( NULL ) {
