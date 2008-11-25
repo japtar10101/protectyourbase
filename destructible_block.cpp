@@ -2,12 +2,7 @@
 
 int DestructibleBlock::display_list_id;
 
-/**** LOTS of constructors and destructor ****/
-
-DestructibleBlock::DestructibleBlock() :
-Block(), id( display_list_id++ ), color( NULL ) {
-	gl_compile();
-}
+/**** constructors and destructor ****/
 
 DestructibleBlock::DestructibleBlock( float x_coord, float y_coord,
 	float set_width, float set_height,

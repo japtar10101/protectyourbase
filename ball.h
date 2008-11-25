@@ -16,7 +16,6 @@ private:
 	
 public:
 	//constructor
-	Ball();
 	Ball( float radius_val, float x_coord, float y_coord, float velocity );
 	
 	//getters and setters

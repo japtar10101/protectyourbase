@@ -11,7 +11,6 @@ private:
 	Color *color;
 public:
 	//constructor & destructor
-	DestructibleBlock();
 	DestructibleBlock( float x_coord, float y_coord,
 		float set_width, float set_height,
 		Color *block_color );

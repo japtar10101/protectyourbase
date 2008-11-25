@@ -1,11 +1,9 @@
 #include "paddle.h"
 
-/**** LOTS of constructors & destructors ****/
+/**** constructors & destructors ****/
 
-Paddle::Paddle( float x_coord, float y_coord,
-	float set_width, float set_height,
-	float range_of_movement, bool move_horizontal,
-	Color *paddle_color ) :
+Paddle::Paddle( float x_coord, float y_coord, float set_width, float set_height,
+	float range_of_movement, bool move_horizontal, Color *paddle_color ) :
 Block( x_coord, y_coord, set_width, set_height ),
 color( paddle_color ),
 horizontal( move_horizontal ) {
