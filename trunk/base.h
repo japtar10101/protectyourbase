@@ -3,14 +3,18 @@
 
 #include "destructible_block.h"
 #include "paddle.h"
+#include "control.h"
 
 #define NUM_DESTRUCTIBLE_BLOCKS 7
 
 class Base : public Graphic {
 private:
 	Color *base_color;
+	Control *controls;
+	
 	Paddle *horizontal;
 	Paddle *vertical;
+	
 	DestructibleBlock *base;
 	DestructibleBlock *defense[NUM_DESTRUCTIBLE_BLOCKS];
 	
@@ -29,16 +33,13 @@ public:
 	enum Corner { top_right, top_left, bottom_right, bottom_left };
 	
 	//Constructor
-	Base( Corner corner, Color *color );
+	Base( Corner corner, Color *color, Control *setting );
 	
 	//Destructor
 	~Base();
 	
-	//Functions that moves the paddles
-	void move_up()		{ vertical->move_up(); }
-	void move_down()	{ vertical->move_down(); }
-	void move_left()	{ horizontal->move_left(); }
-	void move_right()	{ horizontal->move_right(); }
+	//Function that moves the paddles
+	void move_paddle();
 	
 	//function indicating this base is "alive"
 	bool is_intact() { return visible; };

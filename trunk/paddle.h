@@ -39,6 +39,8 @@ public:
 	void move_down();
 	void move_right();
 	void move_left();
+	void move_to_uppper_limit();
+	void move_to_lower_limit();
 	
 	//override function
 	void force_animate();

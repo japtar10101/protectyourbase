@@ -2,7 +2,6 @@
 #define GRAPHIC_H
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
 
 #include "global.h"
