@@ -23,7 +23,7 @@ void DestructibleBlock::gl_compile() {
 	glNewList( id, GL_COMPILE );
 		normal_draw();
 	glEndList();
-    glCallList( id );
+	glCallList( id );
 }
 
 void DestructibleBlock::normal_draw() {
@@ -39,10 +39,14 @@ void DestructibleBlock::normal_draw() {
 /**** Functions to override ****/
 
 void DestructibleBlock::force_draw() {
-    if( id == 0 ) {
-        id = display_list_id++;
-        gl_compile();
-    } else glCallList( id );
+	if( id == 0 ) {
+		id = display_list_id++;
+		gl_compile();
+	} else if( animated ) {
+		normal_draw();
+	} else {
+		glCallList( id );
+	}
 }
 
 void DestructibleBlock::force_animate() {
@@ -52,8 +56,8 @@ void DestructibleBlock::force_animate() {
 
 bool DestructibleBlock::ball_collision( Ball *ball ) {
 	if( Block::ball_collision( ball ) ) {
-        play_animation();
-        ball->increase_velocity();
-        return true;
-    } else return false;
+		play_animation();
+		ball->increase_velocity();
+		return true;
+	} else return false;
 }
