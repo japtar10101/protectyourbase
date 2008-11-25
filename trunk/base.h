@@ -16,18 +16,17 @@ private:
 	
 	//helper generator functions
 	void destroy_all();
-	void generate_top_right_corner( Color *level1, Color *level2, Color *level3 );
-	void generate_top_left_corner( Color *level1, Color *level2, Color *level3 );
-	void generate_bottom_right_corner( Color *level1, Color *level2, Color *level3 );
-	void generate_bottom_left_corner( Color *level1, Color *level2, Color *level3 );
+	void generate_top_right_corner(
+		Color *level1,Color *level2, Color *level3 );
+	void generate_top_left_corner(
+		Color *level1, Color *level2, Color *level3 );
+	void generate_bottom_right_corner(
+		Color *level1, Color *level2, Color *level3 );
+	void generate_bottom_left_corner(
+		Color *level1, Color *level2, Color *level3 );
 public:
 	//Corner enumerator
-	enum Corner {
-		top_right,
-		top_left,
-		bottom_right,
-		bottom_left
-	};
+	enum Corner { top_right, top_left, bottom_right, bottom_left };
 	
 	//Constructor
 	Base( Corner corner, float red, float green, float blue );
