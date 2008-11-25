@@ -16,19 +16,6 @@ private:
 	
 public:
 	//constructor & destructor
-	Paddle();
-	Paddle( float range_of_movement, bool move_horizontal );
-	Paddle( float range_of_movement, bool move_horizontal,
-		float red, float green, float blue );
-	Paddle( float x_coord, float y_coord,
-		float range_of_movement, bool move_horizontal );
-	Paddle( float x_coord, float y_coord,
-		float set_width, float set_height,
-		float range_of_movement, bool move_horizontal );
-	Paddle( float x_coord, float y_coord,
-		float set_width, float set_height,
-		float range_of_movement, bool move_horizontal,
-		float red, float green, float blue );
 	Paddle( float x_coord, float y_coord,
 		float set_width, float set_height,
 		float range_of_movement, bool move_horizontal,
