@@ -4,10 +4,11 @@
 
 //TODO: initializer for immediate gameplay
 //Make the menu the default soon
-Game::Game( Formation game_settings, Color *color1, Color *color2 ) :
-Graphic( 0.0, 0.0, true, true ),
+Game::Game( Formation game_settings, Color *color1, Control *move1,
+	Color *color2, Control *move2 ) : Graphic( 0.0, 0.0, true, true ),
+c_one( color1 ), c_two( color2 ), m_one( move1 ), m_two( move2 ),
 ball( new Ball( ball_radius, grid_height / 2.0, grid_width / 2.0, beginning_velocity ) ),
-c_one( color1 ), c_two( color2 ), current_state( game ) {
+current_state( game ) {
 	//get the corresponding corners
 	Base::Corner player1[2], player2[2];
 	switch( game_settings ) {
@@ -33,19 +34,21 @@ c_one( color1 ), c_two( color2 ), current_state( game ) {
 	
 	//setup the players
 	DestructibleBlock::reset_display_list_id();
-	p_one = new Player( player1[0], player1[1], c_one );
-	p_two = new Player( player2[0], player2[1], c_two );
+	p_one = new Player( player1[0], player1[1], c_one, m_one );
+	p_two = new Player( player2[0], player2[1], c_two, m_two );
 }
 
 Game::~Game() {
+	DESTROY( c_one );
+	DESTROY( c_two );
+	DESTROY( m_one );
+	DESTROY( m_two );
 	destroy_all();
 }
 
-//private helper functions
+/**** private helper functions ****/
 
 void Game::destroy_all() {
-	DESTROY( c_one );
-	DESTROY( c_two );
 	DESTROY( ball );
 	DESTROY( p_one );
 	DESTROY( p_two );
@@ -104,6 +107,8 @@ void Game::force_draw() {
 void Game::force_animate() {
 	if( current_state == game ) {
 		collision();
+		move_player_one();
+		move_player_two();
 		p_one->animate();
 		p_two->animate();
 		ball->animate();
