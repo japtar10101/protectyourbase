@@ -10,6 +10,7 @@ second( new Base( corner2, color, setting ) ) {}
 
 Player::~Player() {
 	DESTROY( base_color );
+	DESTROY( controls );
 	DESTROY( first );
 	DESTROY( second );
 }

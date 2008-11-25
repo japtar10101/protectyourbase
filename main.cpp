@@ -7,21 +7,22 @@
 const char *window_title = "Protect your base";
 Game *protect_your_base;
 Color *color_one, *color_two;
+Control *control_one, *control_two;
 
 /**** initialize functions ****/
 void display();
 void animation( int );
-void controls( unsigned char, int, int );
+void push( unsigned char, int, int );
+void raise( unsigned char, int, int );
 void initialize_window();
+void initialize_pointers();
 
 /**** main function ****/
 
 int main( int argc, char** argv ) {
 	//setup the random seed and game
 	srand( time( NULL ) );
-	color_one = new Color( 0.0, 1.0, 0.0 );
-	color_two = new Color( 0.0, 0.0, 1.0 );
-	protect_your_base =  new Game( Game::vertical, color_one, color_two );
+	initialize_pointers();
 	
 	//basic setup
 	glutInit( &argc, argv );
@@ -37,7 +38,8 @@ int main( int argc, char** argv ) {
 	
 	//keyboard function (also ignore repeated key presses)
 	glutIgnoreKeyRepeat( false );
-	glutKeyboardFunc( controls );
+	glutKeyboardFunc( push );
+	glutKeyboardUpFunc( raise );
 	
 	//go! main loop!
 	glutMainLoop();
@@ -59,24 +61,15 @@ void animation( int value ) {
 }
 
 //controls functions
-void controls( unsigned char key, int x, int y ) {
-	if( key == 'w' ) {
-		protect_your_base->move_player_one_up();
-		protect_your_base->move_player_two_up();
-	} else if( key == 's' ) {
-		protect_your_base->move_player_one_down();
-		protect_your_base->move_player_two_down();
-	}
-	
-	if( key == 'd' ) {
-		protect_your_base->move_player_one_right();
-		protect_your_base->move_player_two_right();
-	} else if( key == 'a' ) {
-		protect_your_base->move_player_one_left();
-		protect_your_base->move_player_two_left();
-	}
+void push( unsigned char key, int x, int y ) {
+	if( !control_one->push_key( key ) ) control_two->push_key( key );
 }
 
+void raise( unsigned char key, int x, int y ) {
+	if( !control_one->raise_key( key ) ) control_two->raise_key( key );
+}
+
+//quick initialize window function
 void initialize_window() {
 	//initialize mode
 	glutInitDisplayMode( GLUT_DOUBLE | GLUT_RGB );
@@ -99,5 +92,20 @@ void initialize_window() {
 	glViewport( 0, 0, grid_width, grid_height );
 	glClearColor( 0.0, 0.0, 0.0, 1.0 );
 	glClear( GL_COLOR_BUFFER_BIT );
+}
+
+//quick initialize pointers
+void initialize_pointers() {
+	//make colors
+	color_one = new Color( 0.0, 1.0, 0.0 );
+	color_two = new Color( 0.0, 0.0, 1.0 );
+	
+	//make controls
+	control_one = new Control( true );
+	control_two = new Control( false );
+	
+	//make the main game
+	protect_your_base =  new Game( Game::vertical,
+		color_one, control_one, color_two, control_two );
 }
 
