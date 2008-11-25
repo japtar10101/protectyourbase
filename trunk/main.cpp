@@ -36,8 +36,7 @@ int main( int argc, char** argv ) {
 	//animation function
 	glutTimerFunc( 1, animation, 0 );
 	
-	//keyboard function (also ignore repeated key presses)
-	glutIgnoreKeyRepeat( false );
+	//keyboard function
 	glutKeyboardFunc( push );
 	glutKeyboardUpFunc( raise );
 	
@@ -81,6 +80,9 @@ void initialize_window() {
 		window_size_height );
 	glutCreateWindow( window_title );
 	
+    //State the game has no depth
+    glDisable( GL_DEPTH_TEST );
+    
 	//adjust clipping box
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
