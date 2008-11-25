@@ -2,6 +2,7 @@
 #define GLOBAL_H
 
 #include <GL/glut.h>
+#include <stdio.h>
 
 /**** Debugging macros ****/
 
@@ -36,5 +37,8 @@ static const float
 	ball_radius = 0.5,
 	beginning_velocity = 0.012;
 
+static const unsigned char 
+	player_one_controls[8] = { 'w', 'W', 's', 'S', 'a', 'A', 'd', 'D' },
+	player_two_controls[8] = { 'p', 'P', ';', ':', 'l', 'L', '\'', '"' };
 #endif
 

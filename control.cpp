@@ -1,11 +1,9 @@
 #include "control.h"
 
-Control::Control( bool player_one ) {
-	//set controls
-	if( player_one )
-		controls = { 'w', 'W', 's', 'S', 'a', 'A', 'd', 'D' };
-	else
-		controls = { 'p', 'P', ';', ':', 'l', 'L', '\'', '"' };
+Control::Control( const unsigned char *array ) {
+	//set the controls
+	for( unsigned char index = 0; index < 8; ++index )
+		controls[index] = array[index];
 	
 	//set all conditions to false
 	for( unsigned char index = 0; index < 4; ++index )
