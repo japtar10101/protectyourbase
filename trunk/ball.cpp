@@ -26,10 +26,10 @@ color( 1.0, 1.0, 1.0 ) {
 /**** Increase velocity function ****/
 
 void Ball::increase_velocity() {
-    float initial_velocity = velocity();
+	float initial_velocity = velocity();
 	if( initial_velocity < maximum_velocity ) {
-        float increment =
-            ( initial_velocity + increment_velocity ) / initial_velocity;
+		float increment =
+			( initial_velocity + increment_velocity ) / initial_velocity;
 		x_vel *= increment;
 		y_vel *= increment;
 	}
