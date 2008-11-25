@@ -1,13 +1,21 @@
 LDLIBS = -lglut -lGL -lGLU -lXmu -lX11 -lm -L/usr/X11R6/lib -g
 GDB = -g -Wall -c
 
+#TODO: link menu in the whole thing
+
 game: main.o
 	g++ $(LDLIBS) main.o game.o player.o base.o paddle.o destructible_block.o block.o ball.o graphic.o control.o color.o -o game
 
 main.o: main.cpp game.o
 	g++ $(GDB) main.cpp
 
-# compile classes that puts many things together
+#TODO: compile the class that puts the game and menu together
+
+# compile the menu
+menu.o: menu.cpp menu.h game.o
+	g++ $(GDB) menu.cpp
+
+# compile game classes that puts many things together
 game.o: game.cpp game.h player.o
 	g++ $(GDB) game.cpp
 
