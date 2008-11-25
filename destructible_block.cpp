@@ -22,8 +22,9 @@ Color *DestructibleBlock::get_color() {
 }
 
 void DestructibleBlock::gl_compile() {
+	//DEBUG_VAR( "compiling id %d", id );
 	glNewList( id, GL_COMPILE );
-		if( color ) color->color();
+		color->color();
 		glBegin( GL_QUADS );
 			glVertex2f( x, y );
 			glVertex2f( x, y + height );
@@ -33,10 +34,21 @@ void DestructibleBlock::gl_compile() {
 	glEndList();
 }
 
+void DestructibleBlock::normal_draw() {
+	glBegin( GL_QUADS );
+		color->color();
+		glVertex2f( x, y );
+		glVertex2f( x, y + height );
+		glVertex2f( x + width, y + height );
+		glVertex2f( x + width, y );
+	glEnd();
+}
+
 /**** Functions to override ****/
 
 void DestructibleBlock::force_draw() {
-	glCallList( id );
+	normal_draw();
+	//glCallList( id );
 }
 
 void DestructibleBlock::force_animate() {

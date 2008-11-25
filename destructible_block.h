@@ -9,6 +9,10 @@ private:
 	static int display_list_id;
 	int id;
 	Color *color;
+	
+	//Display list functions
+	void gl_compile();
+	void normal_draw();
 public:
 	//constructor & destructor
 	DestructibleBlock( float x_coord, float y_coord,
@@ -21,9 +25,6 @@ public:
 	
 	//getter
 	Color *get_color();
-	
-	//Display list functions
-	void gl_compile();
 	
 	//override function
 	void force_draw();
