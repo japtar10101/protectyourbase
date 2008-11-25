@@ -102,10 +102,3 @@ void Paddle::force_draw() {
 	if( color ) color->color();
 	Block::force_draw();
 }
-
-bool Paddle::ball_collision( Ball *ball ) {
-	bool collide = Block::ball_collision( ball );
-	if( collide ) ball->increase_velocity();
-	return collide;
-}
-

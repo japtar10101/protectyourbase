@@ -60,10 +60,12 @@ bool Game::collision() {
 	//is the ball going to bounce off a wall?
 	if( ball->right() > grid_width || ball->left() < 0 ) {
 		ball->bounce_horizontally();
+        //ball->increase_velocity();
 		collide = true;
 	}
 	if( ball->top() > grid_height || ball->bottom() < 0 ) {
 		ball->bounce_vertically();
+        //ball->increase_velocity();
 		collide = true;
 	}
 	

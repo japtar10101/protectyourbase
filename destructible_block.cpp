@@ -9,7 +9,7 @@ DestructibleBlock::DestructibleBlock( float x_coord, float y_coord,
 	Color *block_color ) :
 Block( x_coord, y_coord, set_width, set_height ), id( display_list_id++ ),
 color( block_color ) {
-	gl_compile();
+	//gl_compile();
 }
 
 DestructibleBlock::~DestructibleBlock() {
@@ -51,7 +51,9 @@ void DestructibleBlock::force_animate() {
 }
 
 bool DestructibleBlock::ball_collision( Ball *ball ) {
-	bool collide = Block::ball_collision( ball );
-	if( collide ) play_animation();
-	return collide;
+	if( Block::ball_collision( ball ) ) {
+        play_animation();
+        ball->increase_velocity();
+        return true;
+    } else return false;
 }
