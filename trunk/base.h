@@ -29,7 +29,6 @@ public:
 	enum Corner { top_right, top_left, bottom_right, bottom_left };
 	
 	//Constructor
-	Base( Corner corner, float red, float green, float blue );
 	Base( Corner corner, Color *color );
 	
 	//Destructor
