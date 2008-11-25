@@ -6,7 +6,7 @@
 
 class Paddle : public Block {
 private:
-	static const float velocity = 0.4;
+	static const float velocity = 0.042;
 	static const float default_range = 10.0;
 	Color *color;
 	//limits: the range the paddle can move
