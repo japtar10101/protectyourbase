@@ -37,7 +37,7 @@ int main( int argc, char** argv ) {
 	glutTimerFunc( 1, animation, 0 );
 	
 	//keyboard function (also ignore repeated key presses)
-	glutIgnoreKeyRepeat( false );
+	glutIgnoreKeyRepeat( true );
 	glutKeyboardFunc( push );
 	glutKeyboardUpFunc( raise );
 	
@@ -62,12 +62,12 @@ void animation( int value ) {
 
 //controls functions
 void push( unsigned char key, int x, int y ) {
-	DEBUG_VAR( "Key pressed %c", key );
+	//DEBUG_VAR( "Key pressed %c", key );
 	if( !control_one->push_key( key ) ) control_two->push_key( key );
 }
 
 void raise( unsigned char key, int x, int y ) {
-	DEBUG_VAR( "Key released %c", key );
+	//DEBUG_VAR( "Key released %c", key );
 	if( !control_one->raise_key( key ) ) control_two->raise_key( key );
 }
 

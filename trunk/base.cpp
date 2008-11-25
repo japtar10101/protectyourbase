@@ -172,9 +172,9 @@ void Base::move_paddle() {
 	if( controls->get_key_condition( Control::down ) )
 		vertical->move_down();
 	if( controls->get_key_condition( Control::left ) )
-		vertical->move_left();
+		horizontal->move_left();
 	if( controls->get_key_condition( Control::right ) )
-		vertical->move_right();
+		horizontal->move_right();
 }
 
 /**** Function for collision detection ****/

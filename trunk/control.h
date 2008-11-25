@@ -10,7 +10,7 @@ private:
 	
 public:
 	//Enumerator for movement
-	enum Move { up = 0, down, right, left };
+	enum Move { up = 0, down, left, right };
 	
 	//Constructor
 	Control( const unsigned char *array );
