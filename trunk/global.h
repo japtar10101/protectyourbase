@@ -39,6 +39,7 @@ static const float
 
 static const unsigned char 
 	player_one_controls[8] = { 'w', 'W', 's', 'S', 'a', 'A', 'd', 'D' },
-	player_two_controls[8] = { 'p', 'P', ';', ':', 'l', 'L', '\'', '"' };
+	player_two_controls[8] = { 'p', 'P', ';', ':', 'l', 'L', '\'', '"' },
+	menu_controls[8] = { 'b', 'B', 'q', 'Q', 'h', 'H', 'c', 'C' };
 #endif
 

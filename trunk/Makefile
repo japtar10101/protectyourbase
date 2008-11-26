@@ -1,21 +1,46 @@
 LDLIBS = -lglut -lGL -lGLU -lXmu -lX11 -lm -L/usr/X11R6/lib -g
 GDB = -g -Wall -c
+GRAPHICLIBS = block.o ball.o graphic.o control.o color.o
+GAMELIBS = game.o player.o base.o paddle.o destructible_block.o
+MENULIBS = menu.o game.o
 
-#TODO: link menu in the whole thing
+################ link everything ####################
 
-game: main.o
-	g++ $(LDLIBS) main.o game.o player.o base.o paddle.o destructible_block.o block.o ball.o graphic.o control.o color.o -o game
+#compiles every executable
+all: ProtectYourBase game menu
 
+ProtectYourBase: main.o
+	g++ $(LDLIBS) main.o $(GAMELIBS) $(GRAPHICLIBS) -o ProtectYourBase
+
+game: test_game.o
+	g++ $(LDLIBS) test_game.o $(GAMELIBS) $(GRAPHICLIBS) -o game
+
+menu: test_menu.o
+	g++ $(LDLIBS) test_menu.o $(MENULIBS) $(GRAPHICLIBS) -o menu
+
+#TODO: make a class that combines game and menu
 main.o: main.cpp game.o
 	g++ $(GDB) main.cpp
 
-#TODO: compile the class that puts the game and menu together
+################ compile test elements ####################
+
+#compile menu components
+test_menu.o: test_menu.cpp menu.o
+	g++ $(GDB) test_menu.cpp
+
+#compile game components
+test_game.o: test_game.cpp game.o
+	g++ $(GDB) test_game.cpp
+
+################ compile menu element ####################
 
 # compile the menu
 menu.o: menu.cpp menu.h game.o
 	g++ $(GDB) menu.cpp
 
-# compile game classes that puts many things together
+################ compile game elements ####################
+
+#compile game classes that puts many things together
 game.o: game.cpp game.h player.o
 	g++ $(GDB) game.cpp
 
@@ -25,13 +50,16 @@ player.o: player.cpp player.h base.o
 base.o: base.cpp base.h paddle.o destructible_block.o control.o
 	g++ $(GDB) base.cpp
 
-# compile various blocks
+#compile various blocks
 paddle.o: paddle.cpp paddle.h block.o color.o
 	g++ $(GDB) paddle.cpp
 
 destructible_block.o: destructible_block.cpp destructible_block.h block.o color.o
 	g++ $(GDB) destructible_block.cpp
 
+############### compile basic graphics ####################
+
+#compile basic block
 block.o: block.cpp block.h graphic.o ball.o
 	g++ $(GDB) block.cpp
 
@@ -39,9 +67,11 @@ block.o: block.cpp block.h graphic.o ball.o
 ball.o: ball.cpp ball.h graphic.o color.o
 	g++ $(GDB) ball.cpp
 
-#Where everything roots from
+#compile base graphics class
 graphic.o: graphic.cpp graphic.h global.h
 	g++ $(GDB) graphic.cpp
+
+################ compile root elements ####################
 
 control.o: control.cpp control.h global.h
 	g++ $(GDB) control.cpp
