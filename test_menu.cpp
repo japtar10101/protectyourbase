@@ -1,13 +1,11 @@
-#include <ctime>
-
-#include "game.h"
+#include "menu.h"
 
 /**** initialize variables ****/
 
-const char *window_title = "Protect your base";
-Game *protect_your_base;
-Color *color_one, *color_two, *level1, *level2, *level3;
-Control *control_one, *control_two;
+const char *window_title = "Testing Menu";
+Menu *protect_your_base;
+Color *color_one, *color_two;
+Control *control_one, *control_two, *control_menu;
 
 /**** initialize functions ****/
 void display();
@@ -20,8 +18,7 @@ void initialize_pointers();
 /**** main function ****/
 
 int main( int argc, char** argv ) {
-	//setup the random seed and game
-	srand( time( NULL ) );
+	//setup the menu
 	initialize_pointers();
 	
 	//basic setup
@@ -61,11 +58,22 @@ void animation( int value ) {
 
 //controls functions
 void push( unsigned char key, int x, int y ) {
-	if( !control_one->push_key( key ) ) control_two->push_key( key );
+	if( !control_one->push_key( key ) ) {
+		if( !control_two->push_key( key ) ) {
+			control_menu->push_key( key );
+			if( protect_your_base->start_end_game() ) {
+				DEBUG( "Starting the game!!!" );
+			}
+		}
+	}
 }
 
 void raise( unsigned char key, int x, int y ) {
-	if( !control_one->raise_key( key ) ) control_two->raise_key( key );
+	if( !control_one->raise_key( key ) ) {
+		if( !control_two->raise_key( key ) ) {
+			control_menu->raise_key( key );
+		}
+	}
 }
 
 //quick initialize window function
@@ -99,19 +107,18 @@ void initialize_window() {
 //quick initialize pointers
 void initialize_pointers() {
 	//make colors
-	level1 = new Color( 1.0, 0.0, 0.0 );
-	level2 = new Color( 1.0, 0.5, 0.0 );
-	level3 = new Color( 1.0, 1.0, 0.0 );
 	color_one = new Color( 0.0, 1.0, 0.0 );
 	color_two = new Color( 0.0, 0.0, 1.0 );
 	
 	//make controls
 	control_one = new Control( player_one_controls );
 	control_two = new Control( player_two_controls );
+	control_menu = new Control( menu_controls );
 	
 	//make the main game
-	protect_your_base =  new Game( Game::vertical,
-		color_one, control_one, color_two, control_two,
-		level1, level2, level3 );
+	protect_your_base =  new Menu(
+		Game::vertical, Game::neither, control_menu,
+		color_one, control_one,
+		color_two, control_two );
 }
 
