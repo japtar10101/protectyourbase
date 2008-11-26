@@ -4,7 +4,7 @@
 
 /**** initialize variables ****/
 
-const char *window_title = "Protect your base";
+const char *window_title = "Testing Game";
 Game *protect_your_base;
 Color *color_one, *color_two, *level1, *level2, *level3;
 Control *control_one, *control_two;

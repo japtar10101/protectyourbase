@@ -7,14 +7,15 @@ static const float all_colors[6][3] = {
 	, { 0.0, 1.0, 0.0 }	//green
 	, { 0.0, 0.0, 1.0 }	//blue
 	, { 1.0, 0.0, 1.0 }	//violet
-}
+};
+
 /**** constructors & destructors ****/
 
 Menu::Menu( Game::Formation game_settings, Game::Victory game_text,
-	Control *menu, Color *color1, Control *move1,
-	Color *color2, Control *move2 ) : Graphic(), menu_mode( settings ),
-formation_mode( game_settings ), text_mode( game_text ), base1( color1 ),
-base2( color2 ), player1( move1 ), player2( move2 ), menu_controls( menu ) {
+	Control *menu, Color *color1, Control *move1, Color *color2,
+	Control *move2 ) : Graphic(), menu_mode( settings ), text_mode( game_text ),
+formation_mode( game_settings ), base1( color1 ), base2( color2 ),
+player1( move1 ), player2( move2 ), menu_controls( menu ) {
 	unsigned char index = 0;
 	
 	//making color blocks
@@ -111,12 +112,13 @@ void Menu::draw_text() {
 	
 	//draw title
 	switch( text_mode ) {
-		case player1:
+		case Game::player1:
 			break;
-		case player2:
+		case Game::player2:
 			break;
-		case neither:
+		case Game::neither:
 		default:
+			break;
 	}
 }
 
@@ -146,16 +148,19 @@ void Menu::draw_credits() {
 
 /**** toggling color and formation ****/
 
-void toggle_color( bool player, bool up ) {
-	Color *to_modify = ( player ? base1 : base2 );
+void Menu::toggle_color( bool player, bool up ) {
+	//setup variables
+	Color *to_modify = player ? base1 : base2;
+	
 	float red = to_modify->get_red(),
 		green = to_modify->get_green(),
 		blue = to_modify->get_blue();
+	
 	for( unsigned char index = 0; index < 6; ++index ) {
 		//search for the matching color
 		if( all_colors[index][0] == red &&
 			all_colors[index][1] == green &&
-			all_colors[index][2] == green ) {
+			all_colors[index][2] == blue ) {
 			//if already on the upper limit, set color back to start
 			if( index == 5 && up ) {
 				to_modify->set_color( all_colors[0][0],
@@ -175,15 +180,23 @@ void toggle_color( bool player, bool up ) {
 	}
 }
 
-void toggle_formation( bool up ) {
-	if( formation_mode == Game::diagonal && up )
-		formation_mode = Game::horizontal;
-	else if( formation_mode == Game::horizontal && !up )
-		formation_mode = Game::diagonal;
-	else if( up )
-		formation_mode++;
-	else
-		formation_mode--;
+void Menu::toggle_formation( bool up ) {
+	if( formation_mode == Game::horizontal ) {
+		if( up )
+			formation_mode = Game::vertical;
+		else
+			formation_mode = Game::diagonal;
+	} else if( formation_mode == Game::vertical ) {
+		if( up )
+			formation_mode = Game::diagonal;
+		else
+			formation_mode = Game::horizontal;
+	} else {
+		if( up )
+			formation_mode = Game::horizontal;
+		else
+			formation_mode = Game::vertical;
+	}
 }
 
 /**** control functions ****/
@@ -228,7 +241,7 @@ void Menu::toggle_menu() {
 
 bool Menu::start_end_game() {
 	if( menu_controls->get_key_condition( Control::up ) )
-		return true;  //star the game!
+		return true;  //start the game!
 	else if( menu_controls->get_key_condition( Control::down ) )
 		exit( 0 );  //end the game
 	return false;

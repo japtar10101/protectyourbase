@@ -14,9 +14,9 @@ private:
 		formation_y_placement = 10.0, formation_size = 9.0;
 	
 	//internal variables
-	Game::Formation formation_mode;
-	Game::Victory text_mode;
 	MenuMode menu_mode;
+	Game::Victory text_mode;
+	Game::Formation formation_mode;
 	
 	Color *base1, *base2;
 	Control *player1, *player2, *menu_controls;
@@ -24,24 +24,9 @@ private:
 	//variables for visuals
 	Block *formation[4];
 	Block *portray_color[2];
-	
-	//helper functions
-	void destroy_all();
-	void draw_color_blocks();
-	void draw_formation_blocks();
-	void draw_text();
-	
-	//menu functions
-	void draw_menu();
-	void draw_help();
-	void draw_credits();
-	
-	//toggling color and formation
-	void toggle_color( bool player, bool up );
-	void toggle_formation( bool up );
 public:
 	//Constructor & Destructor
-	Menu( Game::Formation game_settings, Game::Victory game_text, Control *menu
+	Menu( Game::Formation game_settings, Game::Victory game_text, Control *menu,
 		Color *color1, Control *move1, Color *color2, Control *move2 );
 	~Menu();
 	
@@ -58,6 +43,21 @@ public:
 	void force_animate();
 	float top();
 	float right();
+private:
+	//helper functions
+	void destroy_all();
+	void draw_color_blocks();
+	void draw_formation_blocks();
+	void draw_text();
+	
+	//menu functions
+	void draw_menu();
+	void draw_help();
+	void draw_credits();
+	
+	//toggling color and formation
+	void toggle_color( bool player, bool up );
+	void toggle_formation( bool up );
 };
 
 #endif

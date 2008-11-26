@@ -1,8 +1,7 @@
 LDLIBS = -lglut -lGL -lGLU -lXmu -lX11 -lm -L/usr/X11R6/lib -g
 GDB = -g -Wall -c
-GRAPHICLIBS = block.o ball.o graphic.o control.o color.o
-GAMELIBS = game.o player.o base.o paddle.o destructible_block.o
-MENULIBS = menu.o game.o
+GAMELIBS = game.o player.o base.o paddle.o destructible_block.o block.o ball.o graphic.o control.o color.o
+MENULIBS = menu.o
 
 ################ link everything ####################
 
@@ -10,19 +9,19 @@ MENULIBS = menu.o game.o
 all: ProtectYourBase game menu
 
 ProtectYourBase: main.o
-	g++ $(LDLIBS) main.o $(GAMELIBS) $(GRAPHICLIBS) -o ProtectYourBase
-
-game: test_game.o
-	g++ $(LDLIBS) test_game.o $(GAMELIBS) $(GRAPHICLIBS) -o game
+	g++ $(LDLIBS) main.o $(GAMELIBS) -o ProtectYourBase
 
 menu: test_menu.o
-	g++ $(LDLIBS) test_menu.o $(MENULIBS) $(GRAPHICLIBS) -o menu
+	g++ $(LDLIBS) test_menu.o $(MENULIBS) $(GAMELIBS) -o menu
 
-#TODO: make a class that combines game and menu
+game: test_game.o
+	g++ $(LDLIBS) test_game.o $(GAMELIBS) -o game
+
+################ compile files with main ####################
+
+#compile main
 main.o: main.cpp game.o
 	g++ $(GDB) main.cpp
-
-################ compile test elements ####################
 
 #compile menu components
 test_menu.o: test_menu.cpp menu.o
