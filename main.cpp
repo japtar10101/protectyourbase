@@ -50,7 +50,10 @@ int main( int argc, char** argv ) {
 
 //make the display function
 void display() {
-	protect_your_base->draw();
+	glClear( GL_COLOR_BUFFER_BIT );
+		protect_your_base->draw();
+	glutSwapBuffers();
+	glutPostRedisplay();
 }
 
 //set the animations

@@ -86,12 +86,9 @@ Game::Victory Game::winner() {
 /**** Functions to override ****/
 
 void Game::force_draw() {
-	glClear( GL_COLOR_BUFFER_BIT );
-		ball->draw();
-		p_one->draw();
-		p_two->draw();
-	glutSwapBuffers();
-	glutPostRedisplay();
+	ball->draw();
+	p_one->draw();
+	p_two->draw();
 }
 
 void Game::force_animate() {

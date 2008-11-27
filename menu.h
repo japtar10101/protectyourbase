@@ -9,7 +9,7 @@ private:
 	enum MenuMode { settings, help, credits };
 	
 	//constants for setup
-	static const float color_block_x_placement = 6.0,
+	static const float color_block_x_placement = 4.0,
 		color_block_y_placement = 4.0, color_block_size = 4.0,
 		formation_y_placement = 10.0, formation_size = 9.0;
 	

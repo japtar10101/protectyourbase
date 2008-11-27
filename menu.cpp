@@ -22,9 +22,9 @@ player1( move1 ), player2( move2 ), menu_controls( menu ) {
 	portray_color[index++] = new Block( color_block_x_placement,
 		color_block_y_placement, color_block_size, color_block_size );
 	
-	portray_color[index++] = new Block( grid_width - color_block_x_placement,
-		grid_height - color_block_y_placement, color_block_size,
-		color_block_size );
+	portray_color[index++] = new Block(
+		grid_width - color_block_size - color_block_x_placement,
+		color_block_y_placement, color_block_size, color_block_size );
 	
 	//making formation blocks (clockwise)
 	index = 0;
@@ -125,7 +125,7 @@ void Menu::draw_text() {
 /**** menu functions ****/
 
 void Menu::draw_menu() {
-	draw_text();
+	//draw_text();
 	draw_color_blocks();
 	draw_formation_blocks();
 }

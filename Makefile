@@ -1,7 +1,7 @@
 LDLIBS = -lglut -lGL -lGLU -lXmu -lX11 -lm -L/usr/X11R6/lib -g
 GDB = -g -Wall -c
 GAMELIBS = game.o player.o base.o paddle.o destructible_block.o block.o ball.o graphic.o control.o color.o
-MENULIBS = menu.o
+MENULIBS = menu.o mouse.o
 
 ################ link everything ####################
 
@@ -34,8 +34,12 @@ test_game.o: test_game.cpp game.o
 ################ compile menu element ####################
 
 # compile the menu
-menu.o: menu.cpp menu.h game.o
+menu.o: menu.cpp menu.h game.o mouse.o
 	g++ $(GDB) menu.cpp
+
+# compile the mouse
+mouse.o: mouse.cpp mouse.h global.h
+	g++ $(GDB) mouse.cpp
 
 ################ compile game elements ####################
 
