@@ -91,7 +91,7 @@ float Ball::bottom() {
 
 void Ball::shift_velocity( bool shift_x_vel ) {
 	//get a random variable
-	float random = 4.0;//(float) ( rand() % 5 );
+	float random = (float) ( rand() % 5 );
 	if( rand() % 2 ) random *= -1.0;
 	random /= 10000;
 	
