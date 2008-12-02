@@ -122,11 +122,11 @@ void Base::generate_bottom_right_corner( Color *level1, Color *level2, Color *le
 		x + 1.0, y + 6.0, 3.0, 3.0, level2 );
 	//top side
 	defense[index++] = new DestructibleBlock(
-		x + 4.0, y + 6.0, 6.0, 1.0, level3 );
+		x + 4.0, y + 6.0, 6.0, 1.0, level1 );
 	defense[index++] = new DestructibleBlock(
 		x + 4.0, y + 7.0, 6.0, 1.0, level2 );
 	defense[index++] = new DestructibleBlock(
-		x + 4.0, y + 8.0, 6.0, 1.0, level1 );
+		x + 4.0, y + 8.0, 6.0, 1.0, level3 );
 	//left side
 	defense[index++] = new DestructibleBlock(
 		x + 1.0, y, 1.0, 6.0, level3 );

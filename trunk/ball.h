@@ -10,12 +10,16 @@ private:
 		default_radius = 0.5
 		, default_velocity = 0.01
 		, increment_velocity = 0.002
-		, maximum_velocity = 0.1
-		, bounce_constant = 0.001;
+		, maximum_velocity = 0.1;
 	float radius;
 	float x_vel, y_vel;
 	Color color;
 	
+	//helper functions
+	float velocity() { 
+		return (float) sqrt( pow( x_vel, 2.0 ) + pow( y_vel, 2.0 ) );
+	}
+	void shift_velocity( bool shift_x_vel );
 public:
 	//constructor
 	Ball( float radius_val, float x_coord, float y_coord, float velocity );
@@ -29,7 +33,6 @@ public:
 	//functions for the ball to bounce
 	void bounce_vertically();
 	void bounce_horizontally();
-	void bounce_diagonally();
 	
 	//increase velocity
 	void increase_velocity();
@@ -41,11 +44,6 @@ public:
 	float right();
 	float top();
 	float bottom();
-	
-	//helper functions
-	float velocity() { 
-		return (float) sqrt( pow( x_vel, 2.0 ) + pow( y_vel, 2.0 ) );
-	}
 };
 
 #endif
