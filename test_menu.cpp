@@ -5,7 +5,7 @@
 const char *window_title = "Testing Menu";
 Menu *protect_your_base;
 Color *color_one, *color_two;
-Control *control_one, *control_two, *control_menu;
+Control *control_one, *control_two;
 
 /**** initialize functions ****/
 void display();
@@ -14,6 +14,7 @@ void push( unsigned char, int, int );
 void raise( unsigned char, int, int );
 void initialize_window();
 void initialize_pointers();
+void set_window_size( GLsizei, GLsizei );
 
 /**** main function ****/
 
@@ -36,6 +37,9 @@ int main( int argc, char** argv ) {
 	//keyboard function
 	glutKeyboardFunc( push );
 	glutKeyboardUpFunc( raise );
+	
+	//changing window size
+	glutReshapeFunc( set_window_size );
 	
 	//go! main loop!
 	glutMainLoop();
@@ -61,22 +65,11 @@ void animation( int value ) {
 
 //controls functions
 void push( unsigned char key, int x, int y ) {
-	if( !control_one->push_key( key ) ) {
-		if( !control_two->push_key( key ) ) {
-			control_menu->push_key( key );
-			if( protect_your_base->start_end_game() ) {
-				DEBUG( "Starting the game!!!" );
-			}
-		}
-	}
+	if( !control_one->push_key( key ) ) control_two->push_key( key );
 }
 
 void raise( unsigned char key, int x, int y ) {
-	if( !control_one->raise_key( key ) ) {
-		if( !control_two->raise_key( key ) ) {
-			control_menu->raise_key( key );
-		}
-	}
+	if( !control_one->raise_key( key ) ) control_two->raise_key( key );
 }
 
 //quick initialize window function
@@ -116,7 +109,6 @@ void initialize_pointers() {
 	//make controls
 	control_one = new Control( player_one_controls );
 	control_two = new Control( player_two_controls );
-	control_menu = new Control( menu_controls );
 	
 	//make the main game
 	protect_your_base =  new Menu(
@@ -125,3 +117,7 @@ void initialize_pointers() {
 		color_two, control_two );
 }
 
+void set_window_size( GLsizei w, GLsizei h ) {
+	window_size_width = (int) w;
+	window_size_height = (int) h;
+}

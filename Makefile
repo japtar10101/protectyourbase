@@ -6,16 +6,16 @@ MENULIBS = menu.o mouse.o
 ################ link everything ####################
 
 #compiles every executable
-all: ProtectYourBase game menu
-
-ProtectYourBase: main.o
-	g++ $(LDLIBS) main.o $(GAMELIBS) -o ProtectYourBase
+all: ProtectYourBase game #menu
 
 menu: test_menu.o
 	g++ $(LDLIBS) test_menu.o $(MENULIBS) $(GAMELIBS) -o menu
 
 game: test_game.o
 	g++ $(LDLIBS) test_game.o $(GAMELIBS) -o game
+
+ProtectYourBase: main.o
+	g++ $(LDLIBS) main.o $(GAMELIBS) -o ProtectYourBase
 
 ################ compile files with main ####################
 
