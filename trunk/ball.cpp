@@ -90,41 +90,12 @@ float Ball::bottom() {
 }
 
 void Ball::shift_velocity( bool shift_x_vel ) {
-	//get the current velocity
-	const float cur_vel = velocity();
-	
 	//get a random variable
-	float random = (float) ( rand() % 5 );
+	float random = 4.0;//(float) ( rand() % 5 );
 	if( rand() % 2 ) random *= -1.0;
 	random /= 10000;
 	
-	if( shift_x_vel ) {
-		//shift the x velocity
-		x_vel += random;
-		
-		//is y velocity negative?
-		const bool y_neg = y_vel < 0;
-		
-		//recalculate y velocity
-		y_vel = (float) sqrt( cur_vel * cur_vel - x_vel * x_vel );
-		
-		//and finally make velocity negative
-		if( y_neg ) y_vel *= -1.0;
-	} else {
-		//shift the y velocity
-		y_vel += random;
-		
-		//is x velocity negative?
-		const bool x_neg = x_vel < 0;
-		
-		//recalculate x velocity
-		x_vel = (float) sqrt( cur_vel * cur_vel - y_vel * y_vel );
-		
-		//and finally make velocity negative
-		if( x_neg ) x_vel *= -1.0;
-	}
-	/*
-	DEBUG_VAR( "x_vel is %e", x_vel );
-	DEBUG_VAR( "y_vel is %e", y_vel );
-	*/
+	//shift the velocity
+	if( shift_x_vel )	x_vel += random;
+	else				y_vel += random;
 }
