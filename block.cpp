@@ -57,6 +57,7 @@ bool Block::ball_collision( Ball *ball ) {
 			block_right = right(), block_left = left(),
 			ball_top = ball->top(), ball_bottom = ball->bottom(),
 			ball_left = ball->left(), ball_right = ball->right();
+		
 		//Condition for the ball hitting the block
 		if( ball_left < block_right && ball_right > block_left &&
 			ball_bottom < block_top && ball_top > block_bottom ) {
