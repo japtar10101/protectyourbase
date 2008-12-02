@@ -6,10 +6,12 @@
 
 class Ball : public Graphic {
 private:
-	static const float default_radius = 0.5;
-	static const float default_velocity = 0.01;
-	static const float increment_velocity = 0.002;
-	static const float maximum_velocity = 0.1;
+	static const float
+		default_radius = 0.5
+		, default_velocity = 0.01
+		, increment_velocity = 0.002
+		, maximum_velocity = 0.1
+		, bounce_constant = 0.001;
 	float radius;
 	float x_vel, y_vel;
 	Color color;
@@ -25,8 +27,8 @@ public:
 	float get_y_vel();
 	
 	//functions for the ball to bounce
-	void bounce_vertically()	{ y_vel *= -1.0; }
-	void bounce_horizontally()	{ x_vel *= -1.0; }
+	void bounce_vertically();
+	void bounce_horizontally();
 	void bounce_diagonally();
 	
 	//increase velocity

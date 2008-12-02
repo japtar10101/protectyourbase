@@ -23,11 +23,9 @@
 
 /**** Window traits ****/
 
-static const int
-	window_size_width = 700
-	, window_size_height = 700
-	, window_position_x = 0
-	, window_position_y = 0;
+static int window_size_width = 700, window_size_height = 700;
+	
+static const int window_position_x = 0, window_position_y = 0;
 
 static const GLdouble
 	grid_width = 30.0
@@ -39,7 +37,6 @@ static const float
 
 static const unsigned char 
 	player_one_controls[8] = { 'w', 'W', 's', 'S', 'a', 'A', 'd', 'D' },
-	player_two_controls[8] = { 'p', 'P', ';', ':', 'l', 'L', '\'', '"' },
-	menu_controls[8] = { 'b', 'B', 'q', 'Q', 'h', 'H', 'c', 'C' };
+	player_two_controls[8] = { 'p', 'P', ';', ':', 'l', 'L', '\'', '"' };
 #endif
 

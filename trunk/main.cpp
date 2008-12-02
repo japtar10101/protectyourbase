@@ -16,6 +16,7 @@ void push( unsigned char, int, int );
 void raise( unsigned char, int, int );
 void initialize_window();
 void initialize_pointers();
+void set_window_size( GLsizei, GLsizei );
 
 /**** main function ****/
 
@@ -39,6 +40,9 @@ int main( int argc, char** argv ) {
 	//keyboard function
 	glutKeyboardFunc( push );
 	glutKeyboardUpFunc( raise );
+	
+	//changing window size
+	glutReshapeFunc( set_window_size );
 	
 	//go! main loop!
 	glutMainLoop();
@@ -118,3 +122,7 @@ void initialize_pointers() {
 		level1, level2, level3 );
 }
 
+void set_window_size( GLsizei w, GLsizei h ) {
+	window_size_width = (int) w;
+	window_size_height = (int) h;
+}

@@ -12,8 +12,8 @@ static const float all_colors[6][3] = {
 /**** constructors & destructors ****/
 
 Menu::Menu( Game::Formation game_settings, Game::Victory game_text,
-	Control *menu, Color *color1, Control *move1, Color *color2,
-	Control *move2 ) : Graphic(), menu_mode( settings ), text_mode( game_text ),
+	Mouse *menu, Color *color1, Control *move1, Color *color2,
+	Control *move2 ) : Graphic(), text_mode( game_text ),
 formation_mode( game_settings ), base1( color1 ), base2( color2 ),
 player1( move1 ), player2( move2 ), menu_controls( menu ) {
 	unsigned char index = 0;
@@ -130,22 +130,6 @@ void Menu::draw_menu() {
 	draw_formation_blocks();
 }
 
-//TODO: make the help menu
-void Menu::draw_help() {
-	return;
-	//draw player1 game controls
-	//draw player2 game controls
-	//draw menu controls
-}
-
-//TODO: make the credits menu
-void Menu::draw_credits() {
-	return;
-	//draw names
-	//draw description
-	//draw special thanks
-}
-
 /**** toggling color and formation ****/
 
 void Menu::toggle_color( bool player, bool up ) {
@@ -202,6 +186,8 @@ void Menu::toggle_formation( bool up ) {
 /**** control functions ****/
 
 void Menu::toggle_color() {
+	menu->get_button();
+	/*
 	if( player1->get_key_condition( Control::up ) )
 		toggle_color( true, true );
 	else if( player1->get_key_condition( Control::down ) )
@@ -210,6 +196,7 @@ void Menu::toggle_color() {
 		toggle_color( false, true );
 	else if( player2->get_key_condition( Control::down ) )
 		toggle_color( false, false );
+		*/
 }
 
 void Menu::toggle_formation() {
@@ -223,22 +210,6 @@ void Menu::toggle_formation() {
 		toggle_formation( true );
 }
 
-void Menu::toggle_menu() {
-	if( menu_controls->get_key_condition( Control::left ) ) {
-		//toggle help menu
-		if( menu_mode == help )
-			menu_mode = settings;
-		else
-			menu_mode = help;
-	} else if( menu_controls->get_key_condition( Control::right ) ) {
-		//toggle credits menu
-		if( menu_mode == credits )
-			menu_mode = settings;
-		else
-			menu_mode = credits;
-	}
-}
-
 bool Menu::start_end_game() {
 	if( menu_controls->get_key_condition( Control::up ) )
 		return true;  //start the game!
@@ -250,17 +221,7 @@ bool Menu::start_end_game() {
 /**** overriding functions ****/
 
 void Menu::force_draw() {
-	switch( menu_mode ) {
-		case help:
-			draw_help();
-			break;
-		case credits:
-			draw_credits();
-			break;
-		case settings:
-		default:
-			draw_menu();
-	}
+	draw_menu();
 }
 
 void Menu::force_animate() { stop_animation(); }

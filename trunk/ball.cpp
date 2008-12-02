@@ -40,6 +40,14 @@ float Ball::get_x_vel() { return x_vel; }
 
 float Ball::get_y_vel() { return y_vel; }
 
+void Ball::bounce_vertically() {
+	y_vel *= -1.0;
+}
+
+void Ball::bounce_horizontally() {
+	x_vel *= -1.0;
+}
+
 void Ball::bounce_diagonally() {
 	x_vel *= -1.0;
 	y_vel *= -1.0;
@@ -82,4 +90,3 @@ float Ball::top() {
 float Ball::bottom() {
 	return y - radius;
 }
-
