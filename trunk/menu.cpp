@@ -111,34 +111,37 @@ void Menu::draw_string( float x, float y, const char *string ) {
 	}
 }
 
-//TODO: make text
 void Menu::draw_text() {
 	//draw static text (color & formation)
+	const float player_y_placement = color_block_y_placement + 4.6;
 	base1->color();
-	draw_string( color_block_x_placement + 0.4,
-		color_block_y_placement + 4.6, "Player 1" );
+	draw_string( color_block_x_placement - 0.3,
+		player_y_placement, "Player One" );
 	
 	base2->color();
-	draw_string( grid_width - color_block_x_placement - 3.7,
-		color_block_y_placement + 4.6, "Player 2" );
+	draw_string( grid_width - color_block_x_placement - 4.4,
+		player_y_placement, "Player Two" );
 	
 	glColor3f( 1.0, 1.0, 1.0 );
-	draw_string( grid_width / 2.0 - 3.2,
+	draw_string( grid_width / 2.0 - 3.4,
 		formation_y_placement + 10.0, "Base Formation" );
 	
 	//draw title
+	const float title_x = 11.2, title_y = 25.0;
 	switch( text_mode ) {
 		case Game::player1:
+			draw_string( title_x, title_y, "Player One wins!" );
 			break;
 		case Game::player2:
+			draw_string( title_x, title_y, "Player Two wins!" );
 			break;
 		case Game::neither:
 		default:
+			draw_string( title_x, title_y, "Protect Your Base" );
 			break;
 	}
 }
 
-//TODO: make text
 void Menu::draw_start() {
 	//draw block
 	start_game_color->color();
