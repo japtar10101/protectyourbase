@@ -7,10 +7,9 @@
 class Ball : public Graphic {
 private:
 	static const float
-		default_radius = 0.5
-		, default_velocity = 0.01
-		, increment_velocity = 0.002
-		, maximum_velocity = 0.1;
+		increment_velocity = 0.001
+		, maximum_velocity = 0.1
+		, shift_constant = 0.001;
 	float radius;
 	float x_vel, y_vel;
 	Color color;

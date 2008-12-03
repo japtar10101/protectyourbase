@@ -232,38 +232,32 @@ bool Base::ball_collision( Ball *ball ) {
 		mid_height = grid_height / 2.0,
 		ball_x = ball->get_x(),
 		ball_y = ball->get_y();
-	if( ball_x < mid_width && ball_y < mid_height &&
-		position != bottom_left )
+	if( ( ball_x < mid_width && ball_y < mid_height && position != bottom_left ) || 
+		( ball_x > mid_width && ball_y < mid_height && position != bottom_right ) ||
+		( ball_x < mid_width && ball_y > mid_height && position != top_left ) ||
+		( ball_x > mid_width && ball_y > mid_height && position != top_right ) ) {
 		return false;
-	else if( ball_x > mid_width && ball_y < mid_height &&
-		position != bottom_right )
-		return false;
-	else if( ball_x < mid_width && ball_y > mid_height &&
-		position != top_left )
-		return false;
-	else if( ball_x > mid_width && ball_y > mid_height &&
-		position != top_right )
-		return false;
-	
-	//next do the actual calculations
-	animated = base->ball_collision( ball );
-	if( animated ) {
-		//base hit, destroy everything
-		base->play_animation();
-		horizontal->play_animation();
-		vertical->play_animation();
-		for( int index = 0; index < NUM_DESTRUCTIBLE_BLOCKS; ++index ) {
-			defense[index]->play_animation();
-		}
-		play_animation();
 	} else {
-		//else, check everything if they're hit
-		animated = horizontal->ball_collision( ball );
-		animated = vertical->ball_collision( ball ) || animated;
-		for( int index = 0; index < NUM_DESTRUCTIBLE_BLOCKS; ++index )
-			animated = defense[index]->ball_collision( ball ) || animated;
+		//next do the actual calculations
+		animated = base->ball_collision( ball );
+		if( animated ) {
+			//base hit, destroy everything
+			base->play_animation();
+			horizontal->play_animation();
+			vertical->play_animation();
+			for( int index = 0; index < NUM_DESTRUCTIBLE_BLOCKS; ++index ) {
+				defense[index]->play_animation();
+			}
+			play_animation();
+		} else {
+			//else, check everything if they're hit
+			animated = horizontal->ball_collision( ball );
+			animated = vertical->ball_collision( ball ) || animated;
+			for( int index = 0; index < NUM_DESTRUCTIBLE_BLOCKS; ++index )
+				animated = defense[index]->ball_collision( ball ) || animated;
+		}
+		return animated;
 	}
-	return animated;
 }
 
 /**** Functions that has to be overridden ****/
