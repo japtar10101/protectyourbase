@@ -4,8 +4,8 @@
 
 ProtectYourBase::ProtectYourBase( Mouse *mouse_controls,
 	Control *move1, Control *move2 ) : Graphic( 0.0, 0.0, true, true ),
-mouse( mouse_controls ), player1( move1 ), player2( move2 ), color_index1( 0 ),
-color_index2( 4 ), level1( NULL ), level2( NULL ), level3( NULL ), game( NULL ),
+mouse( mouse_controls ), player1( move1 ), player2( move2 ), color_index1( 3 ),
+color_index2( 2 ), level1( NULL ), level2( NULL ), level3( NULL ), game( NULL ),
 menu( NULL ), formation( Game::vertical ), victory( Game::neither ) {
 	unsigned char index = 0;
 	
@@ -59,43 +59,36 @@ void ProtectYourBase::switch_to_game() {
 	//destroy menu
 	DESTROY( menu );
 	
-	//get the first color
-	unsigned char index, random = (unsigned char) rand() % NUM_COLORS;
-	for( index = 0; index < 2; ++index ) {
-		if( random == color_index1 || random == color_index2 ) {
-			random++;
-			if( random == NUM_COLORS )
-				random = 0;
+	unsigned char index, find_available, available[3];
+	for( index = 0; index < 3; ++index ) {
+		available[index] = NUM_COLORS;
+	}
+	for( index = 0; index < 3; ++index ) {
+		for( find_available = 0; find_available < NUM_COLORS; ++find_available ) {
+			if( find_available != color_index1
+				&& find_available != color_index2
+				&& find_available != available[0]
+				&& find_available != available[1]
+				&& find_available != available[2] ) {
+				available[index] = find_available;
+				break;
+			}
 		}
 	}
-	level1 = new Color( all_colors[random][0],
-		all_colors[random][1], all_colors[random][2] );
+	//get the first color
+	index = available[0];
+	level1 = new Color( all_colors[index][0],
+		all_colors[index][1], all_colors[index][2] );
 	
 	//get the second color
-	if( ++random == NUM_COLORS )
-		random = 0;
-	for( index = 0; index < 2; ++index ) {
-		if( random == color_index1 || random == color_index2 ) {
-			random++;
-			if( random == NUM_COLORS )
-				random = 0;
-		}
-	}
-	level2 = new Color( all_colors[random][0],
-		all_colors[random][1], all_colors[random][2] );
+	index = available[1];
+	level2 = new Color( all_colors[index][0],
+		all_colors[index][1], all_colors[index][2] );
 	
 	//get the third color
-	if( ++random == NUM_COLORS )
-		random = 0;
-	for( index = 0; index < 2; ++index ) {
-		if( random == color_index1 || random == color_index2 ) {
-			random++;
-			if( random == NUM_COLORS )
-				random = 0;
-		}
-	}
-	level3 = new Color( all_colors[random][0],
-		all_colors[random][1], all_colors[random][2] );
+	index = available[2];
+	level3 = new Color( all_colors[index][0],
+		all_colors[index][1], all_colors[index][2] );
 	
 	//make menu
 	game = new Game( formation, color1, player1, color2, player2,

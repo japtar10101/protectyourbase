@@ -41,12 +41,12 @@ static const unsigned char
 	player_two_controls[8] = { 'p', 'P', ';', ':', 'l', 'L', '\'', '"' };
 
 static const float all_colors[NUM_COLORS][3] = {
-	{ 1.0, 0.0, 0.0 }	//red
+	{ 1.0, 1.0, 0.0 }	//yellow
 	, { 1.0, 0.5, 0.0 }	//orange
-	, { 1.0, 1.0, 0.0 }	//yellow
-	, { 0.0, 0.7, 0.0 }	//green
 	, { 0.0, 0.0, 1.0 }	//blue
-	, { 0.7, 0.0, 0.7 }	//violet
+	, { 1.0, 0.0, 0.0 }	//red
+	, { 0.6, 0.0, 1.0 }	//violet
+	, { 0.0, 0.8, 0.0 }	//green
 };
 #endif
 
