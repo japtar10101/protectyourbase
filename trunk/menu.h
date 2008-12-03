@@ -2,7 +2,6 @@
 #define MENU_H
 
 #include "game.h"
-#include "mouse.h"
 
 class Menu : public Graphic {
 private:
