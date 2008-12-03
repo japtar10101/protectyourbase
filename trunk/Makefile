@@ -15,12 +15,12 @@ game: test_game.o
 	g++ $(LDLIBS) test_game.o $(GAMELIBS) -o game
 
 ProtectYourBase: main.o
-	g++ $(LDLIBS) main.o $(GAMELIBS) -o ProtectYourBase
+	g++ $(LDLIBS) main.o protect_your_base.o $(MENULIBS) $(GAMELIBS) -o ProtectYourBase
 
 ################ compile files with main ####################
 
 #compile main
-main.o: main.cpp game.o
+main.o: main.cpp protect_your_base.o
 	g++ $(GDB) main.cpp
 
 #compile menu components
@@ -31,9 +31,13 @@ test_menu.o: test_menu.cpp menu.o
 test_game.o: test_game.cpp game.o
 	g++ $(GDB) test_game.cpp
 
+################ compile ProtectYourBase ####################
+
+protect_your_base.o: protect_your_base.cpp protect_your_base.h game.o menu.o
+	g++ $(GDB) protect_your_base.cpp
+
 ################ compile menu element ####################
 
-# compile the menu
 menu.o: menu.cpp menu.h game.o mouse.o
 	g++ $(GDB) menu.cpp
 

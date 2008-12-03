@@ -5,18 +5,20 @@
 /**** initialize variables ****/
 
 const char *window_title = "Protect Your Base";
-Game *protect_your_base;
-Color *color_one, *color_two, *level1, *level2, *level3;
-Control *control_one, *control_two;
+ProtectYourBase *protect_your_base;
+Control *control1, *contro2;
+Mouse *mouse;
+bool holding_mouse;
 
 /**** initialize functions ****/
 void display();
 void animation( int );
 void push( unsigned char, int, int );
 void raise( unsigned char, int, int );
+void mouse( int, int, int, int );
 void initialize_window();
 void initialize_pointers();
-//void set_window_size( GLsizei, GLsizei );
+void set_window_size( GLsizei, GLsizei );
 
 /**** main function ****/
 
@@ -41,8 +43,11 @@ int main( int argc, char** argv ) {
 	glutKeyboardFunc( push );
 	glutKeyboardUpFunc( raise );
 	
+	//mouse function
+	glutMouseFunc( mouse );
+	
 	//changing window size
-	//glutReshapeFunc( set_window_size );
+	glutReshapeFunc( set_window_size );
 	
 	//go! main loop!
 	glutMainLoop();
@@ -63,16 +68,28 @@ void display() {
 //set the animations
 void animation( int value ) {
 	protect_your_base->animate();
-	glutTimerFunc( 1, animation, 0 );
+	if( protect_your_base->in_menu_mode() ) {
+		if( holding_mouse )	glutTimerFunc( 100, animation, 0 );
+		else				glutTimerFunc( 1, animation, 0 );
+	}
 }
 
 //controls functions
 void push( unsigned char key, int x, int y ) {
-	if( !control_one->push_key( key ) ) control_two->push_key( key );
+	if( !control1->push_key( key ) ) control2->push_key( key );
 }
 
 void raise( unsigned char key, int x, int y ) {
-	if( !control_one->raise_key( key ) ) control_two->raise_key( key );
+	if( !control1->raise_key( key ) ) control2->raise_key( key );
+}
+
+void mouse( int btn, int state, int x, int y ) {
+	mouse->set_state( btn, state, x, y );
+	if( state == GLUT_DOWN ) {
+		holding_mouse = true;
+	} else {
+		holding_mouse = false;
+	}
 }
 
 //quick initialize window function
@@ -105,20 +122,13 @@ void initialize_window() {
 
 //quick initialize pointers
 void initialize_pointers() {
-	//make colors
-	level1 = new Color( 1.0, 0.0, 0.0 );
-	level2 = new Color( 1.0, 0.5, 0.0 );
-	level3 = new Color( 1.0, 1.0, 0.0 );
-	color_one = new Color( 0.0, 1.0, 0.0 );
-	color_two = new Color( 0.0, 0.0, 1.0 );
-	
 	//make controls
-	control_one = new Control( player_one_controls );
-	control_two = new Control( player_two_controls );
+	control1 = new Control( player_one_controls );
+	control2 = new Control( player_two_controls );
 	
 	//make the main game
 	protect_your_base =  new Game( Game::vertical,
-		color_one, control_one, color_two, control_two,
+		color_one, control1, color_two, control2,
 		level1, level2, level3 );
 }
 
