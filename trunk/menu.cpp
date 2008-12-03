@@ -103,10 +103,19 @@ void Menu::draw_formation_blocks() {
 	}
 }
 
+void Menu::draw_string( float x, float y, const char *string ) {
+	glRasterPos2i( x, y );
+	unsigned int size = strlen( string );
+	for( unsigned int index = 0; index < size; ++index ) {
+		glutBitmapCharacter( GLUT_BITMAP_9_BY_15, string[index] );
+	}
+}
+
 //TODO: make text
 void Menu::draw_text() {
-	return;
 	//draw static text (color & formation)
+	glColor3f(0.0,0.0,0.0);
+	draw_string( 1.0, 1.0, "Player 1" );
 	
 	//draw title
 	switch( text_mode ) {
@@ -122,11 +131,12 @@ void Menu::draw_text() {
 
 //TODO: make text
 void Menu::draw_start() {
-	//draw static text (color & formation)
-	
 	//draw block
 	start_game_color->color();
 	start_game->draw();
+	
+	//draw static text (color & formation)
+	draw_string( start_x_placement, start_y_placement + 1.0, "Start!" );
 }
 
 /**** menu functions ****/

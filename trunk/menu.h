@@ -2,6 +2,7 @@
 #define MENU_H
 
 #include "game.h"
+#include <string>
 
 class Menu : public Graphic {
 private:
@@ -46,6 +47,7 @@ private:
 	void destroy_all();
 	void draw_color_blocks();
 	void draw_formation_blocks();
+	void draw_string( float x, float y, const char *string );
 	void draw_text();
 	void draw_start();
 	
