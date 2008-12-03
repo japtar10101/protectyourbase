@@ -25,7 +25,7 @@
 
 /**** Window traits ****/
 
-static const int window_position_x = 200, window_position_y = 50,
+static const int window_position_x = 0, window_position_y = 0,
 	window_size_width = 700, window_size_height = 700;
 
 static const GLdouble grid_width = 30.0, grid_height = 30.0;
