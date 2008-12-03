@@ -218,15 +218,15 @@ void Menu::toggle_formation( bool up ) {
 
 void Menu::toggle_color() {
 	const MouseControl::Button btn = menu_controls->get_button();
-	if( portray_color[0]->mouse_over( menu_controls ) ) {
-		if( btn == MouseControl::left )
+	if( btn == MouseControl::left ) {
+		if( portray_color[0]->mouse_over( menu_controls ) )
 			toggle_color( true, true );
-		else if( btn == MouseControl::right )
-			toggle_color( true, false );
-	} else if( portray_color[1]->mouse_over( menu_controls ) ) {
-		if( btn == MouseControl::left )
+		else if( portray_color[1]->mouse_over( menu_controls ) )
 			toggle_color( false, true );
-		else if( btn == MouseControl::right )
+	} else if( btn == MouseControl::right ) {
+		if( portray_color[0]->mouse_over( menu_controls ) )
+			toggle_color( true, false );
+		else if( portray_color[1]->mouse_over( menu_controls ) )
 			toggle_color( false, false );
 	}
 }
