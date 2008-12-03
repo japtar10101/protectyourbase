@@ -1,13 +1,13 @@
 #include <ctime>
 
-#include "game.h"
+#include "protect_your_base.h"
 
 /**** initialize variables ****/
 
 const char *window_title = "Protect Your Base";
 ProtectYourBase *protect_your_base;
-Control *control1, *contro2;
-Mouse *mouse;
+Control *control1, *control2;
+Mouse *mouse_control;
 bool holding_mouse;
 
 /**** initialize functions ****/
@@ -76,15 +76,19 @@ void animation( int value ) {
 
 //controls functions
 void push( unsigned char key, int x, int y ) {
-	if( !control1->push_key( key ) ) control2->push_key( key );
+	if( !protect_your_base->in_menu_mode() ) {
+		if( !control1->push_key( key ) ) control2->push_key( key );
+	}
 }
 
 void raise( unsigned char key, int x, int y ) {
-	if( !control1->raise_key( key ) ) control2->raise_key( key );
+	if( !protect_your_base->in_menu_mode() ) {
+		if( !control1->raise_key( key ) ) control2->raise_key( key );
+	}
 }
 
 void mouse( int btn, int state, int x, int y ) {
-	mouse->set_state( btn, state, x, y );
+	mouse_control->set_state( btn, state, x, y );
 	if( state == GLUT_DOWN ) {
 		holding_mouse = true;
 	} else {
@@ -122,19 +126,33 @@ void initialize_window() {
 
 //quick initialize pointers
 void initialize_pointers() {
+	holding_mouse = false;
+	
 	//make controls
 	control1 = new Control( player_one_controls );
 	control2 = new Control( player_two_controls );
+	mouse_control = new Mouse();
 	
 	//make the main game
-	protect_your_base =  new Game( Game::vertical,
-		color_one, control1, color_two, control2,
-		level1, level2, level3 );
+	protect_your_base =  new ProtectYourBase(
+		mouse_control, control1, control2 );
 }
 
-/*
 void set_window_size( GLsizei w, GLsizei h ) {
-	window_size_width = (int) w;
-	window_size_height = (int) h;
+	//adjust clipping box
+	glMatrixMode( GL_PROJECTION );
+	glLoadIdentity();
+	glOrtho( 0.0, grid_width, 0.0, grid_height, -1.0, 1.0 );
+	glMatrixMode( GL_MODELVIEW );
+	glLoadIdentity();
+	
+	//adjust viewport and clear
+	glViewport( 0, 0, w, h );
+	glClearColor( 0.0, 0.0, 0.0, 1.0 );
+	glClear( GL_COLOR_BUFFER_BIT );
+	
+	//Set the mouse variables
+	Mouse::mouse_range_width = (int) w;
+	Mouse::mouse_range_height = (int) h;
 }
-*/
+
