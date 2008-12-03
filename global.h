@@ -6,7 +6,9 @@
 
 /**** Debugging macros ****/
 
-#define DEGR_TO_RADIANS ( 3.14159 / 180 );
+#define DEGR_TO_RADIANS ( 3.14159 / 180 )
+
+#define NUM_COLORS 6
 
 #define DEBUG( string ) printf( "File %s, line %d: %s\n", \
 	__FILE__, __LINE__, string )
@@ -38,13 +40,13 @@ static const unsigned char
 	player_one_controls[8] = { 'w', 'W', 's', 'S', 'a', 'A', 'd', 'D' },
 	player_two_controls[8] = { 'p', 'P', ';', ':', 'l', 'L', '\'', '"' };
 
-static const float all_colors[6][3] = {
+static const float all_colors[NUM_COLORS][3] = {
 	{ 1.0, 0.0, 0.0 }	//red
 	, { 1.0, 0.5, 0.0 }	//orange
 	, { 1.0, 1.0, 0.0 }	//yellow
-	, { 0.0, 1.0, 0.0 }	//green
+	, { 0.0, 0.7, 0.0 }	//green
 	, { 0.0, 0.0, 1.0 }	//blue
-	, { 1.0, 0.0, 1.0 }	//violet
+	, { 0.7, 0.0, 0.7 }	//violet
 };
 #endif
 
