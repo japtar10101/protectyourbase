@@ -2,7 +2,7 @@
 #define MENU_H
 
 #include "game.h"
-#include <string>
+#include <cstring>
 
 class Menu : public Graphic {
 private:
