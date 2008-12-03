@@ -93,13 +93,22 @@ void Ball::shift_velocity( bool shift_x_vel ) {
 	const float limit = beginning_velocity * 0.1;
 	//get a random variable
 	float shift, temp;
-	int random = rand() % 3;
-	if( random == 0 ) {
-		shift = 0;
-	} else if( random == 1 ) {
-		shift = shift_constant * -1.0;
-	} else {
-		shift = shift_constant;
+	int random = rand() % 5;
+	switch( random ) {
+		case 1:
+			shift = shift_constant;
+			break;
+		case 2:
+			shift = shift_constant * 0.5;
+			break;
+		case 3:
+			shift = shift_constant * -0.5;
+			break;
+		case 4:
+			shift = shift_constant * -1.0;
+			break;
+		default:
+			shift = 0;
 	}
 	
 	//shift the velocity
@@ -113,3 +122,4 @@ void Ball::shift_velocity( bool shift_x_vel ) {
 			y_vel += shift;
 	}
 }
+

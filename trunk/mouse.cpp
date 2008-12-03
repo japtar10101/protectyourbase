@@ -1,7 +1,7 @@
 #include "global.h"
 #include "mouse.h"
 
-//static const GLdouble grid_width = 30.0, grid_height = 30.0;
+static const GLdouble grid_width = 30.0, grid_height = 30.0;
 int Mouse::mouse_range_width, Mouse::mouse_range_height;
 
 /**** MouseControls functions ****/
