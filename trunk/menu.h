@@ -9,23 +9,25 @@ private:
 	//constants for setup
 	static const float color_block_x_placement = 4.0,
 		color_block_y_placement = 4.0, color_block_size = 4.0,
-		formation_y_placement = 10.0, formation_size = 9.0;
+		formation_y_placement = 10.0, formation_size = 9.0,
+		start_x_placement = 5.0, start_y_placement = 20.0,
+		start_width = 6.0, start_height = 3.0;
 	
 	//internal variables
 	Game::Victory text_mode;
 	Game::Formation formation_mode;
 	
-	Color *base1, *base2;
-	Control *player1, *player2;
+	Color *base1, *base2, *start_game_color;
 	Mouse *menu_controls;
 	
 	//variables for visuals
 	Block *formation[4];
 	Block *portray_color[2];
+	Block *start_game;
 public:
 	//Constructor & Destructor
 	Menu( Game::Formation game_settings, Game::Victory game_text, Mouse *menu,
-		Color *color1, Control *move1, Color *color2, Control *move2 );
+		Color *color1, Color *color2 );
 	~Menu();
 	
 	//Control functions
@@ -45,6 +47,7 @@ private:
 	void draw_color_blocks();
 	void draw_formation_blocks();
 	void draw_text();
+	void draw_start();
 	
 	//menu functions
 	void draw_menu();

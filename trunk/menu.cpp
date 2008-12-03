@@ -1,21 +1,13 @@
 #include "menu.h"
 
-static const float all_colors[6][3] = {
-	{ 1.0, 0.0, 0.0 }	//red
-	, { 1.0, 0.5, 0.0 }	//orange
-	, { 1.0, 1.0, 0.0 }	//yellow
-	, { 0.0, 1.0, 0.0 }	//green
-	, { 0.0, 0.0, 1.0 }	//blue
-	, { 1.0, 0.0, 1.0 }	//violet
-};
-
 /**** constructors & destructors ****/
 
 Menu::Menu( Game::Formation game_settings, Game::Victory game_text,
-	Mouse *menu, Color *color1, Control *move1, Color *color2,
-	Control *move2 ) : Graphic(), text_mode( game_text ),
+	Mouse *menu, Color *color1, Color *color2 ) :
+Graphic( 0.0, 0.0, true, true ), text_mode( game_text ),
 formation_mode( game_settings ), base1( color1 ), base2( color2 ),
-player1( move1 ), player2( move2 ), menu_controls( menu ) {
+start_game_color( new Color( 1.0, 1.0, 1.0 ) ), menu_controls( menu ),
+start_game( new Block( start_x_placement, start_y_placement, start_width, start_height ) ) {
 	unsigned char index = 0;
 	
 	//making color blocks
@@ -64,7 +56,10 @@ void Menu::destroy_all() {
 		DESTROY( formation[index] );
 	for( index = 0; index < 2; ++index )
 		DESTROY( portray_color[index] );
-	DESTROY( menu_controls );
+	DESTROY( start_game_color );
+	DESTROY( start_game );
+	//menu controls will not be owned by menu
+	//DESTROY( menu_controls );
 }
 
 void Menu::draw_color_blocks() {
@@ -122,12 +117,22 @@ void Menu::draw_text() {
 	}
 }
 
+//TODO: make text
+void Menu::draw_start() {
+	//draw static text (color & formation)
+	
+	//draw block
+	start_game_color->color();
+	start_game->draw();
+}
+
 /**** menu functions ****/
 
 void Menu::draw_menu() {
 	//draw_text();
 	draw_color_blocks();
 	draw_formation_blocks();
+	draw_start();
 }
 
 /**** toggling color and formation ****/
@@ -186,35 +191,46 @@ void Menu::toggle_formation( bool up ) {
 /**** control functions ****/
 
 void Menu::toggle_color() {
-	menu->get_button();
-	/*
-	if( player1->get_key_condition( Control::up ) )
-		toggle_color( true, true );
-	else if( player1->get_key_condition( Control::down ) )
-		toggle_color( true, false );
-	if( player2->get_key_condition( Control::up ) )
-		toggle_color( false, true );
-	else if( player2->get_key_condition( Control::down ) )
-		toggle_color( false, false );
-		*/
+	const MouseControl::Button btn = menu_controls->get_button();
+	if( portray_color[0]->mouse_over( menu_controls ) ) {
+		if( btn == MouseControl::left ) {
+			toggle_color( true, true );
+		} else if( btn == MouseControl::right ) {
+			toggle_color( true, false );
+		}
+	} else if( portray_color[1]->mouse_over( menu_controls ) ) {
+		if( btn == MouseControl::left ) {
+			toggle_color( false, true );
+		} else if( btn == MouseControl::right ) {
+			toggle_color( false, false );
+		}
+	}
 }
 
 void Menu::toggle_formation() {
-	if( player1->get_key_condition( Control::left ) )
-		toggle_formation( false );
-	else if( player1->get_key_condition( Control::right ) )
-		toggle_formation( true );
-	else if( player2->get_key_condition( Control::left ) )
-		toggle_formation( false );
-	else if( player2->get_key_condition( Control::right ) )
-		toggle_formation( true );
+	const MouseControl::Button btn = menu_controls->get_button();
+	const float bottom = formation[0]->bottom(), left = formation[0]->left(),
+		top = formation[2]->top(), right = formation[2]->right(),
+		mouse_x = menu_controls->get_x(), mouse_y = menu_controls->get_y();
+	if( ( mouse_y > bottom && mouse_y < top ) &&
+		( mouse_x > left && mouse_x < right ) ) {
+		if( btn == MouseControl::left ) {
+			toggle_formation( true );
+		} else if( btn == MouseControl::right ) {
+			toggle_formation( false );
+		}
+	}
 }
 
 bool Menu::start_end_game() {
-	if( menu_controls->get_key_condition( Control::up ) )
-		return true;  //start the game!
-	else if( menu_controls->get_key_condition( Control::down ) )
-		exit( 0 );  //end the game
+	const MouseControl::Button btn = menu_controls->get_button();
+	if( start_game->mouse_over( menu_controls ) ) {
+		if( btn == MouseControl::left ) {
+			return true;
+		} else if( btn == MouseControl::right ) {
+			exit( 0 );
+		}
+	}
 	return false;
 }
 
@@ -224,8 +240,13 @@ void Menu::force_draw() {
 	draw_menu();
 }
 
-void Menu::force_animate() { stop_animation(); }
+void Menu::force_animate() {
+	toggle_color();
+	toggle_formation();
+	stop_animation();
+}
 
 float Menu::top() { return grid_height; }
 
 float Menu::right() { return grid_width; }
+

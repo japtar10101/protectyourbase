@@ -1,8 +1,6 @@
 #ifndef MOUSE_H
 #define MOUSE_H
 
-#include "global.h"
-
 #define OUT_OF_BOUNDS (-1)
 
 struct MouseControl {

@@ -89,3 +89,9 @@ bool Block::ball_collision( Ball *ball ) {
 	}
 }
 
+bool Block::mouse_over( Mouse *controls ) {
+	const float mouse_x = controls->get_x(), mouse_y = controls->get_y();
+	return ( mouse_y > bottom() && mouse_y < top() ) &&
+		( mouse_x > left() && mouse_x < right() );
+}
+

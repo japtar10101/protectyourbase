@@ -1,12 +1,12 @@
 LDLIBS = -lglut -lGL -lGLU -lXmu -lX11 -lm -L/usr/X11R6/lib -g
 GDB = -g -Wall -c
-GAMELIBS = game.o player.o base.o paddle.o destructible_block.o block.o ball.o graphic.o control.o color.o
-MENULIBS = menu.o mouse.o
+GAMELIBS = game.o player.o base.o paddle.o destructible_block.o block.o ball.o graphic.o mouse.o control.o color.o
+MENULIBS = menu.o
 
 ################ link everything ####################
 
 #compiles every executable
-all: ProtectYourBase game #menu
+all: ProtectYourBase game menu
 
 menu: test_menu.o
 	g++ $(LDLIBS) test_menu.o $(MENULIBS) $(GAMELIBS) -o menu
@@ -37,10 +37,6 @@ test_game.o: test_game.cpp game.o
 menu.o: menu.cpp menu.h game.o mouse.o
 	g++ $(GDB) menu.cpp
 
-# compile the mouse
-mouse.o: mouse.cpp mouse.h global.h
-	g++ $(GDB) mouse.cpp
-
 ################ compile game elements ####################
 
 #compile game classes that puts many things together
@@ -63,7 +59,7 @@ destructible_block.o: destructible_block.cpp destructible_block.h block.o color.
 ############### compile basic graphics ####################
 
 #compile basic block
-block.o: block.cpp block.h graphic.o ball.o
+block.o: block.cpp block.h graphic.o ball.o mouse.o
 	g++ $(GDB) block.cpp
 
 #compile ball
@@ -75,6 +71,9 @@ graphic.o: graphic.cpp graphic.h global.h
 	g++ $(GDB) graphic.cpp
 
 ################ compile root elements ####################
+
+mouse.o: mouse.cpp mouse.h global.h
+	g++ $(GDB) mouse.cpp
 
 control.o: control.cpp control.h global.h
 	g++ $(GDB) control.cpp

@@ -1,4 +1,7 @@
+#include "global.h"
 #include "mouse.h"
+
+static const GLdouble grid_width = 30.0, grid_height = 30.0;
 
 /**** MouseControls functions ****/
 
@@ -33,7 +36,11 @@ MouseControl::State MouseControl::state() {
 
 /**** Mouse functions ****/
 
+/**** Constructor ****/
+
 Mouse::Mouse() : control( GLUT_LEFT_BUTTON, GLUT_UP, 0, 0 ) {}
+
+/**** The rest ****/
 
 MouseControl::Button Mouse::get_button() {
 	if( control.state() == MouseControl::down )
@@ -62,3 +69,4 @@ float Mouse::get_y() {
 		( (float) grid_height ) / ( (float) window_size_width );
 	return y_pos * convert;
 }
+
