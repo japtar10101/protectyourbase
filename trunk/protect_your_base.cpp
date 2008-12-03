@@ -90,7 +90,8 @@ void ProtectYourBase::force_animate() {
 			switch_modes();
 	} else {
 		game->animate();
-		if( game->winner() != Game::neither ) 
+		DEBUG( "made it here" );
+		if( game->winner() != Game::neither )
 			switch_modes();
 	}
 }
