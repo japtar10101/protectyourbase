@@ -5,7 +5,7 @@
 #include "paddle.h"
 #include "control.h"
 
-#define NUM_DESTRUCTIBLE_BLOCKS 7
+#define NUM_DESTRUCTIBLE_BLOCKS 13
 
 class Base : public Graphic {
 public:

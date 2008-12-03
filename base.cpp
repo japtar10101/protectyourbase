@@ -66,19 +66,31 @@ void Base::generate_top_right_corner( Color *level1, Color *level2, Color *level
 	
 	//bottom side
 	defense[index++] = new DestructibleBlock(
-		x + 4.0, y + 1.0, 6.0, 1.0, level3 );
+		x + 4.0, y + 1.0, 3.0, 1.0, level3 );
 	defense[index++] = new DestructibleBlock(
-		x + 4.0, y + 2.0, 6.0, 1.0, level2 );
+		x + 7.0, y + 1.0, 3.0, 1.0, level3 );
 	defense[index++] = new DestructibleBlock(
-		x + 4.0, y + 3.0, 6.0, 1.0, level1 );
+		x + 4.0, y + 2.0, 3.0, 1.0, level2 );
+	defense[index++] = new DestructibleBlock(
+		x + 7.0, y + 2.0, 3.0, 1.0, level2 );
+	defense[index++] = new DestructibleBlock(
+		x + 4.0, y + 3.0, 3.0, 1.0, level1 );
+	defense[index++] = new DestructibleBlock(
+		x + 7.0, y + 3.0, 3.0, 1.0, level1 );
 	
 	//left side
 	defense[index++] = new DestructibleBlock(
-		x + 1.0, y + 4.0, 1.0, 6.0, level3 );
+		x + 1.0, y + 4.0, 1.0, 3.0, level3 );
 	defense[index++] = new DestructibleBlock(
-		x + 2.0, y + 4.0, 1.0, 6.0, level2 );
+		x + 1.0, y + 7.0, 1.0, 3.0, level3 );
 	defense[index++] = new DestructibleBlock(
-		x + 3.0, y + 4.0, 1.0, 6.0, level1 );
+		x + 2.0, y + 4.0, 1.0, 3.0, level2 );
+	defense[index++] = new DestructibleBlock(
+		x + 2.0, y + 7.0, 1.0, 3.0, level2 );
+	defense[index++] = new DestructibleBlock(  
+		x + 3.0, y + 4.0, 1.0, 3.0, level1 );
+	defense[index++] = new DestructibleBlock(  
+		x + 3.0, y + 7.0, 1.0, 3.0, level1 );
 }
 
 void Base::generate_top_left_corner( Color *level1, Color *level2, Color *level3 ) {
@@ -95,18 +107,30 @@ void Base::generate_top_left_corner( Color *level1, Color *level2, Color *level3
 		x + 6.0, y + 1.0, 3.0, 3.0, level2 );
 	//bottom side
 	defense[index++] = new DestructibleBlock(
-		x, y + 1.0, 6.0, 1.0, level3 );
+		x, y + 1.0, 3.0, 1.0, level3 );
 	defense[index++] = new DestructibleBlock(
-		x, y + 2.0, 6.0, 1.0, level2 );
+		x + 3.0, y + 1.0, 3.0, 1.0, level3 );
 	defense[index++] = new DestructibleBlock(
-		x, y + 3.0, 6.0, 1.0, level1 );
+		x, y + 2.0, 3.0, 1.0, level2 );
+	defense[index++] = new DestructibleBlock(
+		x + 3.0, y + 2.0, 3.0, 1.0, level2 );
+	defense[index++] = new DestructibleBlock(
+		x, y + 3.0, 3.0, 1.0, level1 );
+	defense[index++] = new DestructibleBlock(
+		x + 3.0, y + 3.0, 3.0, 1.0, level1 );
 	//right side
 	defense[index++] = new DestructibleBlock(
-		x + 8.0, y + 4.0, 1.0, 6.0, level3 );
+		x + 8.0, y + 4.0, 1.0, 3.0, level3 );
 	defense[index++] = new DestructibleBlock(
-		x + 7.0, y + 4.0, 1.0, 6.0, level2 );
+		x + 8.0, y + 7.0, 1.0, 3.0, level3 );
 	defense[index++] = new DestructibleBlock(
-		x + 6.0, y + 4.0, 1.0, 6.0, level1 );
+		x + 7.0, y + 4.0, 1.0, 3.0, level2 );
+	defense[index++] = new DestructibleBlock(
+		x + 7.0, y + 7.0, 1.0, 3.0, level2 );
+	defense[index++] = new DestructibleBlock(
+		x + 6.0, y + 4.0, 1.0, 3.0, level1 );
+	defense[index++] = new DestructibleBlock(
+		x + 6.0, y + 7.0, 1.0, 3.0, level1 );
 }
 
 void Base::generate_bottom_right_corner( Color *level1, Color *level2, Color *level3 ) {
@@ -122,18 +146,30 @@ void Base::generate_bottom_right_corner( Color *level1, Color *level2, Color *le
 		x + 1.0, y + 6.0, 3.0, 3.0, level2 );
 	//top side
 	defense[index++] = new DestructibleBlock(
-		x + 4.0, y + 6.0, 6.0, 1.0, level1 );
+		x + 4.0, y + 6.0, 3.0, 1.0, level1 );
 	defense[index++] = new DestructibleBlock(
-		x + 4.0, y + 7.0, 6.0, 1.0, level2 );
+		x + 7.0, y + 6.0, 3.0, 1.0, level1 );
 	defense[index++] = new DestructibleBlock(
-		x + 4.0, y + 8.0, 6.0, 1.0, level3 );
+		x + 4.0, y + 7.0, 3.0, 1.0, level2 );
+	defense[index++] = new DestructibleBlock(
+		x + 7.0, y + 7.0, 3.0, 1.0, level2 );
+	defense[index++] = new DestructibleBlock(
+		x + 4.0, y + 8.0, 3.0, 1.0, level3 );
+	defense[index++] = new DestructibleBlock(
+		x + 7.0, y + 8.0, 3.0, 1.0, level3 );
 	//left side
 	defense[index++] = new DestructibleBlock(
-		x + 1.0, y, 1.0, 6.0, level3 );
+		x + 1.0, y, 1.0, 3.0, level3 );
 	defense[index++] = new DestructibleBlock(
-		x + 2.0, y, 1.0, 6.0, level2 );
+		x + 1.0, y + 3.0, 1.0, 3.0, level3 );
 	defense[index++] = new DestructibleBlock(
-		x + 3.0, y, 1.0, 6.0, level1 );
+		x + 2.0, y, 1.0, 3.0, level2 );
+	defense[index++] = new DestructibleBlock(
+		x + 2.0, y + 3.0, 1.0, 3.0, level2 );
+	defense[index++] = new DestructibleBlock(
+		x + 3.0, y, 1.0, 3.0, level1 );
+	defense[index++] = new DestructibleBlock(
+		x + 3.0, y + 3.0, 1.0, 3.0, level1 );
 }
 
 void Base::generate_bottom_left_corner( Color *level1, Color *level2, Color *level3 ) {
@@ -149,18 +185,30 @@ void Base::generate_bottom_left_corner( Color *level1, Color *level2, Color *lev
 		x + 6.0, y + 6.0, 3.0, 3.0, level2 );
 	//top side
 	defense[index++] = new DestructibleBlock(
-		x, y + 8.0, 6.0, 1.0, level3 );
+		x, y + 8.0, 3.0, 1.0, level3 );
 	defense[index++] = new DestructibleBlock(
-		x, y + 7.0, 6.0, 1.0, level2 );
+		x + 3.0, y + 8.0, 3.0, 1.0, level3 );
 	defense[index++] = new DestructibleBlock(
-		x, y + 6.0, 6.0, 1.0, level1 );
+		x, y + 7.0, 3.0, 1.0, level2 );
+	defense[index++] = new DestructibleBlock(
+		x + 3.0, y + 7.0, 3.0, 1.0, level2 );
+	defense[index++] = new DestructibleBlock(
+		x, y + 6.0, 3.0, 1.0, level1 );
+	defense[index++] = new DestructibleBlock(
+		x + 3.0, y + 6.0, 3.0, 1.0, level1 );
 	//right side
 	defense[index++] = new DestructibleBlock(
-		x + 8.0, y, 1.0, 6.0, level3 );
+		x + 8.0, y, 1.0, 3.0, level3 );
 	defense[index++] = new DestructibleBlock(
-		x + 7.0, y, 1.0, 6.0, level2 );
+		x + 8.0, y + 3.0, 1.0, 3.0, level3 );
 	defense[index++] = new DestructibleBlock(
-		x + 6.0, y, 1.0, 6.0, level1 );
+		x + 7.0, y, 1.0, 3.0, level2 );
+	defense[index++] = new DestructibleBlock(
+		x + 7.0, y + 3.0, 1.0, 3.0, level2 );
+	defense[index++] = new DestructibleBlock(
+		x + 6.0, y, 1.0, 3.0, level1 );
+	defense[index++] = new DestructibleBlock(
+		x + 6.0, y + 3.0, 1.0, 3.0, level1 );
 }
 
 /*** Function that moves the paddles ****/
