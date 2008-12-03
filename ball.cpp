@@ -90,12 +90,27 @@ float Ball::bottom() {
 }
 
 void Ball::shift_velocity( bool shift_x_vel ) {
+	const float lower_range = beginning_velocity * 0.1,
+		upper_range = beginning_velocity * 0.9;
 	//get a random variable
-	float random = (float) ( rand() % 5 );
-	if( rand() % 2 ) random *= -1.0;
-	random /= 10000;
+	float shift, temp;
+	int random = rand() % 3;
+	if( random == 0 ) {
+		shift = 0;
+	} else if( random == 1 ) {
+		shift = shift_constant * -1.0;
+	} else {
+		shift = shift_constant;
+	}
 	
 	//shift the velocity
-	if( shift_x_vel )	x_vel += random;
-	else				y_vel += random;
+	if( shift_x_vel ) {
+		temp = (float) abs( x_vel ) + shift;
+		if( temp > lower_range && temp > upper_range )
+			x_vel += shift;
+	} else {
+		temp = (float) abs( y_vel ) + shift;
+		if( temp > lower_range && temp > upper_range )
+			y_vel += shift;
+	}
 }
