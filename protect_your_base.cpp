@@ -2,15 +2,21 @@
 
 /**** constructor & destructor ****/
 
-ProtectYourBase::ProtectYourBase( Mouse *mouse_controls, Control *move1, Control *move2 ) :
-Graphic( 0.0, 0.0, true, true ),
-mouse( mouse_controls ),
-player1( move1 ), player2( move2 ),
-color1( new Color( all_colors[0][0], all_colors[0][1], all_colors[0][2] ) ),
-color2( new Color( all_colors[4][0], all_colors[4][1], all_colors[4][2] ) ),
-level1( NULL ), level2( NULL ), level3( NULL ),
-game( NULL ), menu( NULL ),
-formation( Game::vertical ), victory( Game::neither ) {
+ProtectYourBase::ProtectYourBase( Mouse *mouse_controls,
+	Control *move1, Control *move2 ) : Graphic( 0.0, 0.0, true, true ),
+mouse( mouse_controls ), player1( move1 ), player2( move2 ), color_index1( 0 ),
+color_index2( 4 ), level1( NULL ), level2( NULL ), level3( NULL ), game( NULL ),
+menu( NULL ), formation( Game::vertical ), victory( Game::neither ) {
+	unsigned char index = 0;
+	
+	color1 = new Color( all_colors[color_index1][index++],
+		all_colors[color_index1][index++], all_colors[color_index1][index++] );
+	
+	index = 0;
+	
+	color2 = new Color( all_colors[color_index2][index++],
+		all_colors[color_index2][index++], all_colors[color_index2][index++] );
+	
 	menu = new Menu( formation, victory, mouse, color1, color2 );
 }
 
@@ -46,18 +52,68 @@ void ProtectYourBase::switch_to_menu() {
 
 void ProtectYourBase::switch_to_game() {
 	//grab info
+	set_color_index();
 	formation = menu->get_formation();
 	victory = Game::neither;
 	
 	//destroy menu
 	DESTROY( menu );
 	
+	//get the first color
+	unsigned char index, random = (unsigned char) rand() % NUM_COLORS;
+	for( index = 0; index < 2; ++index ) {
+		if( random == color_index1 || random == color_index2 ) {
+			random++;
+			if( random == NUM_COLORS )
+				random = 0;
+		}
+	}
+	level1 = new Color( all_colors[random][0],
+		all_colors[random][1], all_colors[random][2] );
+	
+	//get the second color
+	if( ++random == NUM_COLORS )
+		random = 0;
+	for( index = 0; index < 2; ++index ) {
+		if( random == color_index1 || random == color_index2 ) {
+			random++;
+			if( random == NUM_COLORS )
+				random = 0;
+		}
+	}
+	level2 = new Color( all_colors[random][0],
+		all_colors[random][1], all_colors[random][2] );
+	
+	//get the third color
+	if( ++random == NUM_COLORS )
+		random = 0;
+	for( index = 0; index < 2; ++index ) {
+		if( random == color_index1 || random == color_index2 ) {
+			random++;
+			if( random == NUM_COLORS )
+				random = 0;
+		}
+	}
+	level3 = new Color( all_colors[random][0],
+		all_colors[random][1], all_colors[random][2] );
+	
 	//make menu
-	level1 = new Color( 1.0, 0.0, 0.0 );
-	level2 = new Color( 1.0, 0.5, 0.0 );
-	level3 = new Color( 1.0, 1.0, 0.0 );
 	game = new Game( formation, color1, player1, color2, player2,
 		level1, level2, level3 );
+}
+
+void ProtectYourBase::set_color_index() {
+	for( unsigned char index = 0; index < NUM_COLORS; ++index ) {
+		if( color1->get_red() == all_colors[index][0] &&
+			color1->get_green() == all_colors[index][1] &&
+			color1->get_blue() == all_colors[index][2] )
+			color_index1 = index;
+		
+		if( color2->get_red() == all_colors[index][0] &&
+			color2->get_green() == all_colors[index][1] &&
+			color2->get_blue() == all_colors[index][2] )
+			color_index2 = index;
+	}
 }
 
 /**** Public functions ****/
