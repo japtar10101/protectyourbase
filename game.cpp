@@ -78,8 +78,8 @@ bool Game::collision() {
 
 Game::Victory Game::winner() {
 	if( !player1 && !player2 ) return neither;
-	else if( !p_one->is_alive() ) return player1;
-	else if( !p_two->is_alive() ) return player2;
+	else if( !p_one->is_alive() ) return player2;
+	else if( !p_two->is_alive() ) return player1;
 	else						  return neither;
 }
 
