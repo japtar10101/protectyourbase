@@ -71,6 +71,8 @@ void animation( int value ) {
 	if( protect_your_base->in_menu_mode() ) {
 		if( holding_mouse )	glutTimerFunc( 100, animation, 0 );
 		else				glutTimerFunc( 1, animation, 0 );
+	} else {
+		glutTimerFunc( 1, animation, 0 );
 	}
 }
 

@@ -86,11 +86,12 @@ void ProtectYourBase::force_draw() {
 void ProtectYourBase::force_animate() {
 	if( in_menu_mode() ) {
 		menu->animate();
+		//DEBUG( "menu animate" );
 		if( menu->start_end_game() )
 			switch_modes();
 	} else {
 		game->animate();
-		DEBUG( "made it here" );
+		//DEBUG( "game animate" );
 		if( game->winner() != Game::neither )
 			switch_modes();
 	}
