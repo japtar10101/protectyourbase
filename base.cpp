@@ -4,7 +4,7 @@
 
 Base::Base( Corner corner, Color *color, Control *setting,
 	Color *block1, Color *block2, Color *block3 ) :
-Graphic(), base_color( color ), level1( block1 ),
+Graphic(), position( corner ), base_color( color ), level1( block1 ),
 level2( block2 ), level3( block3 ), controls( setting ),
 //set everything to null
 horizontal( NULL ), vertical( NULL ), base( NULL ) {
@@ -179,6 +179,25 @@ void Base::move_paddle() {
 /**** Function for collision detection ****/
 
 bool Base::ball_collision( Ball *ball ) {
+	//first, confirm the ball is in this quadrant
+	const float mid_width = grid_width / 2.0,
+		mid_height = grid_height / 2.0,
+		ball_x = ball->get_x(),
+		ball_y = ball->get_y();
+	if( ball_x < mid_width && ball_y < mid_height &&
+		position != bottom_left )
+		return false;
+	else if( ball_x > mid_width && ball_y < mid_height &&
+		position != bottom_right )
+		return false;
+	else if( ball_x < mid_width && ball_y > mid_height &&
+		position != top_left )
+		return false;
+	else if( ball_x > mid_width && ball_y > mid_height &&
+		position != top_right )
+		return false;
+	
+	//next do the actual calculations
 	animated = base->ball_collision( ball );
 	if( animated ) {
 		//base hit, destroy everything

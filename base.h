@@ -8,8 +8,13 @@
 #define NUM_DESTRUCTIBLE_BLOCKS 7
 
 class Base : public Graphic {
+public:
+//Corner enumerator
+enum Corner { top_right, top_left, bottom_right, bottom_left };
+
 private:
 	//member variables
+	Corner position;
 	Color *base_color, *level1, *level2, *level3;
 	Control *controls;
 	
@@ -30,9 +35,6 @@ private:
 	void generate_bottom_left_corner(
 		Color *level1, Color *level2, Color *level3 );
 public:
-	//Corner enumerator
-	enum Corner { top_right, top_left, bottom_right, bottom_left };
-	
 	//Constructor
 	Base( Corner corner, Color *color, Control *setting,
 		Color *block1, Color *block2, Color *block3 );
