@@ -6,6 +6,7 @@ const char *window_title = "Testing Menu";
 Menu *protect_your_base;
 Color *color_one, *color_two;
 Mouse *control;
+bool holding_mouse;
 
 /**** initialize functions ****/
 void display();
@@ -62,16 +63,18 @@ void display() {
 //set the animations
 void animation( int value ) {
 	protect_your_base->animate();
-	if( protect_your_base->get_animated() ) glutTimerFunc( 1, animation, 0 );
-	else {
-		glutTimerFunc( 40, animation, 0 );
-		protect_your_base->set_animated( true );
-	}
+	if( holding_mouse )	glutTimerFunc( 100, animation, 0 );
+	else				glutTimerFunc( 1, animation, 0 );
 }
 
 //controls functions
 void mouse( int btn, int state, int x, int y ) {
 	control->set_state( btn, state, x, y );
+	if( state == GLUT_DOWN ) {
+		holding_mouse = true;
+	} else {
+		holding_mouse = false;
+	}
 }
 
 //quick initialize window function
@@ -110,6 +113,7 @@ void initialize_window() {
 void initialize_pointers() {
 	const int index_one = 0, index_two = 4;
 	int index = 0;
+	holding_mouse = false;
 	
 	//make colors
 	color_one = new Color( all_colors[index_one][index++],

@@ -33,10 +33,8 @@ public:
 	//Constructor
 	Mouse();
 	
-	//functions for keyboard
-	void set_state( int button, int state, int x, int y ) {
-		control.change_state( button, state, x, y );
-	}
+	//functions for mouse
+	void set_state( int button, int state, int x, int y );
 	
 	//function that gets the button pressed, if any
 	MouseControl::Button get_button();

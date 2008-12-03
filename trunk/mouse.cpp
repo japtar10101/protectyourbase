@@ -43,6 +43,10 @@ Mouse::Mouse() : control( GLUT_LEFT_BUTTON, GLUT_UP, 0, 0 ) {}
 
 /**** The rest ****/
 
+void Mouse::set_state( int button, int state, int x, int y ) {
+	control.change_state( button, state, x, y );
+}
+
 MouseControl::Button Mouse::get_button() {
 	if( control.state() == MouseControl::down )
 		return control.button();
