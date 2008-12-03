@@ -193,17 +193,15 @@ void Menu::toggle_formation( bool up ) {
 void Menu::toggle_color() {
 	const MouseControl::Button btn = menu_controls->get_button();
 	if( portray_color[0]->mouse_over( menu_controls ) ) {
-		if( btn == MouseControl::left ) {
+		if( btn == MouseControl::left )
 			toggle_color( true, true );
-		} else if( btn == MouseControl::right ) {
+		else if( btn == MouseControl::right )
 			toggle_color( true, false );
-		}
 	} else if( portray_color[1]->mouse_over( menu_controls ) ) {
-		if( btn == MouseControl::left ) {
+		if( btn == MouseControl::left )
 			toggle_color( false, true );
-		} else if( btn == MouseControl::right ) {
+		else if( btn == MouseControl::right )
 			toggle_color( false, false );
-		}
 	}
 }
 
@@ -214,22 +212,20 @@ void Menu::toggle_formation() {
 		mouse_x = menu_controls->get_x(), mouse_y = menu_controls->get_y();
 	if( ( mouse_y > bottom && mouse_y < top ) &&
 		( mouse_x > left && mouse_x < right ) ) {
-		if( btn == MouseControl::left ) {
+		if( btn == MouseControl::left )
 			toggle_formation( true );
-		} else if( btn == MouseControl::right ) {
+		else if( btn == MouseControl::right )
 			toggle_formation( false );
-		}
 	}
 }
 
 bool Menu::start_end_game() {
 	const MouseControl::Button btn = menu_controls->get_button();
 	if( start_game->mouse_over( menu_controls ) ) {
-		if( btn == MouseControl::left ) {
+		if( btn == MouseControl::left )
 			return true;
-		} else if( btn == MouseControl::right ) {
+		else if( btn == MouseControl::right )
 			exit( 0 );
-		}
 	}
 	return false;
 }

@@ -28,6 +28,8 @@ private:
 	MouseControl control;
 	
 public:
+	static int mouse_range_width, mouse_range_height;
+	
 	//Constructor
 	Mouse();
 	

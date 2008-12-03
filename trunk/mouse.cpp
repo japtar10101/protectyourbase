@@ -2,6 +2,7 @@
 #include "mouse.h"
 
 static const GLdouble grid_width = 30.0, grid_height = 30.0;
+int Mouse::mouse_range_width, Mouse::mouse_range_height;
 
 /**** MouseControls functions ****/
 
@@ -50,23 +51,23 @@ MouseControl::Button Mouse::get_button() {
 
 float Mouse::get_x() {
 	//if out of window bounds, return a negative value
-	if( control.x > window_size_width || control.x < window_position_x )
+	if( control.x > mouse_range_width || control.x < window_position_x )
 		return OUT_OF_BOUNDS;
 	//calculate based on the global variables
 	float x_pos = (float) control.x;
 	const float convert =
-		( (float) grid_height ) / ( (float) window_size_width );
+		( (float) grid_height ) / ( (float) mouse_range_width );
 	return x_pos * convert;
 }
 
 float Mouse::get_y() {
 	//if out of window bounds, return a negative value
-	if( control.y > window_size_height || control.y < window_position_y )
+	if( control.y > mouse_range_height || control.y < window_position_y )
 		return OUT_OF_BOUNDS;
 	//calculate based on the global variables
 	float y_pos = (float) ( window_size_height - control.y );
 	const float convert =
-		( (float) grid_height ) / ( (float) window_size_width );
+		( (float) grid_height ) / ( (float) mouse_range_height );
 	return y_pos * convert;
 }
 

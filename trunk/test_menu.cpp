@@ -100,6 +100,10 @@ void initialize_window() {
 	glViewport( 0, 0, grid_width, grid_height );
 	glClearColor( 0.0, 0.0, 0.0, 1.0 );
 	glClear( GL_COLOR_BUFFER_BIT );
+	
+	//setup the mouse stuff
+	Mouse::mouse_range_width = window_size_width;
+	Mouse::mouse_range_height = window_size_height;
 }
 
 //quick initialize pointers
@@ -123,9 +127,6 @@ void initialize_pointers() {
 }
 
 void set_window_size( GLsizei w, GLsizei h ) {
-	window_size_width = (int) w;
-	window_size_height = (int) h;
-	
 	//adjust clipping box
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
@@ -134,8 +135,12 @@ void set_window_size( GLsizei w, GLsizei h ) {
 	glLoadIdentity();
 	
 	//adjust viewport and clear
-	glViewport( 0, 0, window_size_width, window_size_height );
+	glViewport( 0, 0, w, h );
 	glClearColor( 0.0, 0.0, 0.0, 1.0 );
 	glClear( GL_COLOR_BUFFER_BIT );
+	
+	//Set the mouse variables
+	Mouse::mouse_range_width = (int) w;
+	Mouse::mouse_range_height = (int) h;
 }
 
