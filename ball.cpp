@@ -56,7 +56,7 @@ void Ball::bounce_horizontally() {
 void Ball::force_draw() {
 	color.color();
 	glBegin( GL_POLYGON );
-	for( int index = 0; index < 360; index += 20 ) {
+	for( int index = 0; index < 360; index += 30 ) {
 		//draw a circle
 		float degInRad = index * DEGR_TO_RADIANS;
 		float x_coord = cos( degInRad );
