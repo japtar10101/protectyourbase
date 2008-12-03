@@ -13,7 +13,7 @@ void animation( int );
 void mouse( int, int, int, int );
 void initialize_window();
 void initialize_pointers();
-//void set_window_size( GLsizei, GLsizei );
+void set_window_size( GLsizei, GLsizei );
 
 /**** main function ****/
 
@@ -41,7 +41,7 @@ int main( int argc, char** argv ) {
 	glutMouseFunc( mouse );
 	
 	//changing window size
-	//glutReshapeFunc( set_window_size );
+	glutReshapeFunc( set_window_size );
 	
 	//go! main loop!
 	glutMainLoop();
@@ -122,9 +122,20 @@ void initialize_pointers() {
 		color_one, color_two );
 }
 
-/*
 void set_window_size( GLsizei w, GLsizei h ) {
 	window_size_width = (int) w;
 	window_size_height = (int) h;
+	
+	//adjust clipping box
+	glMatrixMode( GL_PROJECTION );
+	glLoadIdentity();
+	glOrtho( 0.0, grid_width, 0.0, grid_height, -1.0, 1.0 );
+	glMatrixMode( GL_MODELVIEW );
+	glLoadIdentity();
+	
+	//adjust viewport and clear
+	glViewport( 0, 0, window_size_width, window_size_height );
+	glClearColor( 0.0, 0.0, 0.0, 1.0 );
+	glClear( GL_COLOR_BUFFER_BIT );
 }
-*/
+

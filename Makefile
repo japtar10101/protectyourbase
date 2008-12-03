@@ -1,5 +1,5 @@
 LDLIBS = -lglut -lGL -lGLU -lXmu -lX11 -lm -L/usr/X11R6/lib -g
-GDB = -g -Wall -c
+GDB = -g -c
 GAMELIBS = game.o player.o base.o paddle.o destructible_block.o block.o ball.o graphic.o mouse.o control.o color.o
 MENULIBS = menu.o
 
