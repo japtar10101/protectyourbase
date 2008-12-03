@@ -9,6 +9,7 @@ private:
 	Mouse *mouse;
 	Control *player1, *player2;
 	
+	unsigned char color_index1, color_index2;
 	Color *color1, *color2, *level1, *level2, *level3;
 	
 	Game *game;
@@ -21,6 +22,7 @@ private:
 	void destroy_all();
 	void switch_to_menu();
 	void switch_to_game();
+	void set_color_index();
 public:
 	//Constructor & Destructor
 	ProtectYourBase( Mouse *mouse_controls, Control *move1, Control *move2 );

@@ -9,7 +9,7 @@ private:
 	static const float
 		increment_velocity = 0.002
 		, maximum_velocity = 0.1
-		, shift_constant = 0.001;
+		, shift_constant = 0.002;
 	float radius;
 	float x_vel, y_vel;
 	Color color;
