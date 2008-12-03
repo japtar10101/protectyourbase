@@ -9,7 +9,7 @@ private:
 	static const float color_block_x_placement = 4.0,
 		color_block_y_placement = 4.0, color_block_size = 4.0,
 		formation_y_placement = 10.0, formation_size = 9.0,
-		start_x_placement = 5.0, start_y_placement = 20.0,
+		start_x_placement = 12.0, start_y_placement = 4.5,
 		start_width = 6.0, start_height = 3.0;
 	
 	//internal variables

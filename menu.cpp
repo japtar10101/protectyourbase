@@ -63,8 +63,11 @@ void Menu::destroy_all() {
 }
 
 void Menu::draw_color_blocks() {
-	for( unsigned char index = 0; index < 2; ++index )
-		portray_color[index]->draw();
+	unsigned char index = 0;
+	base1->color();
+	portray_color[index++]->draw();
+	base2->color();
+	portray_color[index++]->draw();
 }
 
 void Menu::draw_formation_blocks() {
@@ -239,7 +242,6 @@ void Menu::force_draw() {
 void Menu::force_animate() {
 	toggle_color();
 	toggle_formation();
-	stop_animation();
 }
 
 float Menu::top() { return grid_height; }
