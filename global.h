@@ -30,6 +30,8 @@ static const GLdouble
 	grid_width = 30.0
 	, grid_height = 30.0;
 
+/**** Elements traits ****/
+
 static const float
 	ball_radius = 0.5,
 	beginning_velocity = 0.012;
@@ -37,5 +39,14 @@ static const float
 static const unsigned char 
 	player_one_controls[8] = { 'w', 'W', 's', 'S', 'a', 'A', 'd', 'D' },
 	player_two_controls[8] = { 'p', 'P', ';', ':', 'l', 'L', '\'', '"' };
+
+static const float all_colors[6][3] = {
+	{ 1.0, 0.0, 0.0 }	//red
+	, { 1.0, 0.5, 0.0 }	//orange
+	, { 1.0, 1.0, 0.0 }	//yellow
+	, { 0.0, 1.0, 0.0 }	//green
+	, { 0.0, 0.0, 1.0 }	//blue
+	, { 1.0, 0.0, 1.0 }	//violet
+};
 #endif
 

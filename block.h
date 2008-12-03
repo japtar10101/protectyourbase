@@ -3,6 +3,7 @@
 
 #include "graphic.h"
 #include "ball.h"
+#include "mouse.h"
 
 class Block : public Graphic {
 private:
@@ -29,6 +30,7 @@ public:
 	
 	//collision detection
 	virtual bool ball_collision( Ball *ball );
+	bool mouse_over( Mouse *controls );
 };
 
 #endif

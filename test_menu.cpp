@@ -5,13 +5,12 @@
 const char *window_title = "Testing Menu";
 Menu *protect_your_base;
 Color *color_one, *color_two;
-Control *control_one, *control_two;
+Mouse *control;
 
 /**** initialize functions ****/
 void display();
 void animation( int );
-void push( unsigned char, int, int );
-void raise( unsigned char, int, int );
+void mouse( int, int, int, int );
 void initialize_window();
 void initialize_pointers();
 //void set_window_size( GLsizei, GLsizei );
@@ -35,8 +34,11 @@ int main( int argc, char** argv ) {
 	glutTimerFunc( 1, animation, 0 );
 	
 	//keyboard function
-	glutKeyboardFunc( push );
-	glutKeyboardUpFunc( raise );
+	//glutKeyboardFunc( push );
+	//glutKeyboardUpFunc( raise );
+	
+	//mouse function
+	glutMouseFunc( mouse );
 	
 	//changing window size
 	//glutReshapeFunc( set_window_size );
@@ -60,16 +62,16 @@ void display() {
 //set the animations
 void animation( int value ) {
 	protect_your_base->animate();
-	glutTimerFunc( 1, animation, 0 );
+	if( protect_your_base->get_animated() ) glutTimerFunc( 1, animation, 0 );
+	else {
+		glutTimerFunc( 40, animation, 0 );
+		protect_your_base->set_animated( true );
+	}
 }
 
 //controls functions
-void push( unsigned char key, int x, int y ) {
-	if( !control_one->push_key( key ) ) control_two->push_key( key );
-}
-
-void raise( unsigned char key, int x, int y ) {
-	if( !control_one->raise_key( key ) ) control_two->raise_key( key );
+void mouse( int btn, int state, int x, int y ) {
+	control->set_state( btn, state, x, y );
 }
 
 //quick initialize window function
@@ -102,19 +104,22 @@ void initialize_window() {
 
 //quick initialize pointers
 void initialize_pointers() {
+	const int index_one = 0, index_two = 4;
+	int index = 0;
+	
 	//make colors
-	color_one = new Color( 0.0, 1.0, 0.0 );
-	color_two = new Color( 0.0, 0.0, 1.0 );
+	color_one = new Color( all_colors[index_one][index++],
+		all_colors[index_one][index++], all_colors[index_one][index++] );
+	index = 0;
+	color_two = new Color( all_colors[index_two][index++],
+		all_colors[index_two][index++], all_colors[index_two][index++] );
 	
 	//make controls
-	control_one = new Control( player_one_controls );
-	control_two = new Control( player_two_controls );
+	control = new Mouse();
 	
 	//make the main game
-	protect_your_base =  new Menu(
-		Game::vertical, Game::neither, control_menu,
-		color_one, control_one,
-		color_two, control_two );
+	protect_your_base =  new Menu( Game::vertical, Game::neither, control,
+		color_one, color_two );
 }
 
 /*
