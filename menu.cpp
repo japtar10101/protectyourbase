@@ -114,8 +114,12 @@ void Menu::draw_string( float x, float y, const char *string ) {
 //TODO: make text
 void Menu::draw_text() {
 	//draw static text (color & formation)
-	//glColor3f(0.0,0.0,0.0);
-	draw_string( 1.0, 1.0, "Player 1" );
+	base1->color();
+	draw_string( color_block_x_placement + 0.4,
+		color_block_y_placement + 4.6, "Player 1" );
+	base2->color();
+	draw_string( grid_width - color_block_x_placement - 3.7,
+		color_block_y_placement + 4.6, "Player 2" );
 	
 	//draw title
 	switch( text_mode ) {
@@ -143,10 +147,10 @@ void Menu::draw_start() {
 /**** menu functions ****/
 
 void Menu::draw_menu() {
-	//draw_text();
 	draw_color_blocks();
 	draw_formation_blocks();
 	draw_start();
+	draw_text();
 }
 
 /**** toggling color and formation ****/
