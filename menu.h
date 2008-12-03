@@ -34,6 +34,7 @@ public:
 	void toggle_formation();
 	//start_end_game returns true if the players wants to start the game
 	bool start_end_game();
+	Game::Formation get_formation() { return formation_mode; }
 	
 	//Functions that has to be overridden
 	void force_draw();
